@@ -1,7 +1,7 @@
 #include "Elevator.hpp"
 #include "util.hpp"
 
-Elevator::Elevator(int x, int min_floor, int max_floor, float vspeed = 1.0f) : MapObject(x), min_floor(min_floor), max_floor(max_floor), vspeed(vspeed)
+Elevator::Elevator(int x, int min_floor, int max_floor, float vspeed) : MapObject(x), min_floor(min_floor), max_floor(max_floor), vspeed(vspeed)
 {
 	int start_floor = randint(min_floor, max_floor);
 	this->fy = (float)start_floor;
