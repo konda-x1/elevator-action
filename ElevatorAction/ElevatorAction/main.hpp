@@ -1,4 +1,4 @@
-// Function prototypes for main.cpp
+#pragma once
 
 void myKeyboardFunc( unsigned char key, int x, int y );
 void mySpecialKeyFunc( int key, int x, int y );
