@@ -4,6 +4,8 @@
 #include "glut\glut.h"
 #include "main.hpp"
 
+using namespace std;
+
 const double Xmin = 0.0, Xmax = 3.0;
 const double Ymin = 0.0, Ymax = 3.0;
 
