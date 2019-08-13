@@ -8,8 +8,9 @@ public:
 	int min_floor;
 	int max_floor;
 	int target_floor;
+	float vspeed; // Floors per second
 
-	Elevator(int x, int min_floor, int max_floor);
+	Elevator(int x, int min_floor, int max_floor, float vspeed = 1.0f);
 	~Elevator();
 
 	int current_floor();
