@@ -30,8 +30,6 @@ Elevator::~Elevator()
 
 int Elevator::current_floor()
 {
-	if (abs((float)this->target_floor - this->fy) < 0.01f)
-		return this->target_floor;
 	float trunc_val = (this->direction() == 1 ? std::floor(this->fy) : std::ceil(this->fy));
 	return (int)trunc_val;
 }
@@ -89,9 +87,9 @@ void Elevator::process(float delta)
 		float sign = (float)this->direction();
 		this->fy += sign * this->vspeed * delta;
 
-		// Correct the fy value to match the exact value of current_floor when elevator stops moving
-		if (!this->is_moving()) {
-			this->fy = (float)this->current_floor();
+		// Correct the fy value to match the exact value of current_floor when elevator reaches its destination
+		if(sign * (this->fy - (float)this->target_floor) >= 0) {
+			this->fy = (float)this->target_floor;
 		}
 	}
 	else {
