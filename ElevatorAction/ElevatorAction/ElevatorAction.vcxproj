@@ -127,15 +127,15 @@
   <ItemGroup>
     <ClCompile Include="Elevator.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MapObject.cpp" />
-    <ClCompile Include="SingleFloorMapObject.cpp" />
+    <ClCompile Include="LevelObject.cpp" />
+    <ClCompile Include="SingleFloorLevelObject.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Elevator.hpp" />
     <ClInclude Include="glut\glut.h" />
-    <ClInclude Include="MapObject.hpp" />
-    <ClInclude Include="SingleFloorMapObject.hpp" />
+    <ClInclude Include="LevelObject.hpp" />
+    <ClInclude Include="SingleFloorLevelObject.hpp" />
     <ClInclude Include="util.hpp" />
     <ClInclude Include="main.hpp" />
   </ItemGroup>

@@ -1,10 +1,10 @@
 #pragma once
-class MapObject
+class LevelObject
 {
 public:
 	int x;
-	MapObject(int x);
-	~MapObject();
+	LevelObject(int x);
+	~LevelObject();
 	virtual void process(float delta) = 0;
 	virtual void render(float delta) = 0;
 };

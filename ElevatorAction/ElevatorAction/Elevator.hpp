@@ -1,7 +1,7 @@
 #pragma once
-#include "MapObject.hpp"
+#include "LevelObject.hpp"
 
-class Elevator : public MapObject
+class Elevator : public LevelObject
 {
 	float wait_time = 2.0f;
 	float wait_time_elapsed = 0.0f;

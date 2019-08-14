@@ -21,13 +21,13 @@
     <ClCompile Include="util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MapObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Elevator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SingleFloorMapObject.cpp">
+    <ClCompile Include="LevelObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleFloorLevelObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,10 +44,10 @@
     <ClInclude Include="util.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MapObject.hpp">
+    <ClInclude Include="LevelObject.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SingleFloorMapObject.hpp">
+    <ClInclude Include="SingleFloorLevelObject.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

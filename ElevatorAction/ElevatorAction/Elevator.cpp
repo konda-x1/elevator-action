@@ -15,7 +15,7 @@ void Elevator::move_next()
 	this->move_generic(this->passive_direction);
 }
 
-Elevator::Elevator(int x, int min_floor, int max_floor, float vspeed) : MapObject(x), min_floor(min_floor), max_floor(max_floor), vspeed(vspeed)
+Elevator::Elevator(int x, int min_floor, int max_floor, float vspeed) : LevelObject(x), min_floor(min_floor), max_floor(max_floor), vspeed(vspeed)
 {
 	int start_floor = randint(min_floor, max_floor);
 	this->fy = (float)start_floor;
