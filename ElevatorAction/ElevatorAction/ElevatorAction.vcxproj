@@ -126,6 +126,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Elevator.cpp" />
+    <ClCompile Include="AbstractHitbox.cpp" />
+    <ClCompile Include="Hitbox.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="LevelObject.cpp" />
     <ClCompile Include="SingleFloorLevelObject.cpp" />
@@ -134,6 +137,9 @@
   <ItemGroup>
     <ClInclude Include="Elevator.hpp" />
     <ClInclude Include="glut\glut.h" />
+    <ClInclude Include="AbstractHitbox.hpp" />
+    <ClInclude Include="Hitbox.hpp" />
+    <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelObject.hpp" />
     <ClInclude Include="SingleFloorLevelObject.hpp" />
     <ClInclude Include="util.hpp" />
