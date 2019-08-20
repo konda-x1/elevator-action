@@ -8,6 +8,7 @@ class Level
 {
 	std::vector<LevelObject*> objects = std::vector<LevelObject*>();
 	std::set<std::pair<int, int>> elevator_occupied = std::set<std::pair<int, int>>();
+	bool built = false;
 public:
 	int width;
 	int height;
@@ -18,5 +19,6 @@ public:
 	void add_elevator(Elevator *e);
 	void process(float delta);
 	void render(float delta);
+	void build();
 };
 
