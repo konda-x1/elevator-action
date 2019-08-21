@@ -125,8 +125,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DocumentDoor.cpp" />
+    <ClCompile Include="Door.cpp" />
     <ClCompile Include="Elevator.cpp" />
     <ClCompile Include="AbstractHitbox.cpp" />
+    <ClCompile Include="EnemyDoor.cpp" />
     <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
@@ -135,7 +138,10 @@
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DocumentDoor.hpp" />
+    <ClInclude Include="Door.hpp" />
     <ClInclude Include="Elevator.hpp" />
+    <ClInclude Include="EnemyDoor.hpp" />
     <ClInclude Include="glut\glut.h" />
     <ClInclude Include="AbstractHitbox.hpp" />
     <ClInclude Include="Hitbox.hpp" />
