@@ -62,8 +62,11 @@ int Level::size()
 
 void Level::add_elevator(Elevator* e)
 {
-	for (int i = e->min_floor; i <= e->max_floor; i++)
-		this->occupied.insert(std::pair<int, int>(e->x, i));
+	for (int i = e->min_floor; i <= e->max_floor; i++) {
+		auto xy = std::pair<int, int>(e->x, i);
+		this->occupied.insert(xy);
+		this->elevator_occupied.insert(xy);
+	}
 	this->objects.push_back(e);
 }
 

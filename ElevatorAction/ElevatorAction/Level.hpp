@@ -9,6 +9,7 @@ class Level
 {
 	std::vector<LevelObject*> objects = std::vector<LevelObject*>();
 	std::set<std::pair<int, int>> occupied = std::set<std::pair<int, int>>();
+	std::set<std::pair<int, int>> elevator_occupied = std::set<std::pair<int, int>>();
 	bool built = false;
 
 	int remaining_free();
