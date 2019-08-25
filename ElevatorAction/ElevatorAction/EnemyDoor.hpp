@@ -8,6 +8,5 @@ public:
 	~EnemyDoor();
 
 	void process(float delta) override;
-	void render(float delta) override;
 };
 
