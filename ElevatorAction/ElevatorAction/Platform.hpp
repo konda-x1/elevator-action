@@ -5,6 +5,9 @@ class Platform :
 {
 public:
 	static const float THICKNESS;
+	static const float R;
+	static const float G;
+	static const float B;
 
 	Platform(int x, int y);
 	~Platform();
