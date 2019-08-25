@@ -11,24 +11,24 @@ AbstractHitbox::~AbstractHitbox()
 {
 }
 
-int AbstractHitbox::left()
+float AbstractHitbox::left()
 {
-	return (int)std::min(this->x1(), this->x2());
+	return (float)std::min(this->x1(), this->x2());
 }
 
-int AbstractHitbox::right()
+float AbstractHitbox::right()
 {
-	return (int)std::max(this->x1(), this->x2());
+	return (float)std::max(this->x1(), this->x2());
 }
 
-int AbstractHitbox::top()
+float AbstractHitbox::top()
 {
-	return (int)std::max(this->y1(), this->y2());
+	return (float)std::max(this->y1(), this->y2());
 }
 
-int AbstractHitbox::bottom()
+float AbstractHitbox::bottom()
 {
-	return (int)std::min(this->y1(), this->y2());
+	return (float)std::min(this->y1(), this->y2());
 }
 
 bool AbstractHitbox::collides(AbstractHitbox *h)
