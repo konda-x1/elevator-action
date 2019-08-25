@@ -2,8 +2,9 @@
 class AbstractHitbox
 {
 public:
-	AbstractHitbox();
+	AbstractHitbox(bool solid);
 	~AbstractHitbox();
+	bool solid;
 
 	virtual float x1() const = 0;
 	virtual float y1() const = 0;

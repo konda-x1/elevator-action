@@ -7,7 +7,7 @@ class Hitbox : public AbstractHitbox
 	float _x1, _y1;
 	float _x2, _y2;
 public:
-	Hitbox(float x1, float y1, float x2, float y2);
+	Hitbox(float x1, float y1, float x2, float y2, bool solid);
 	~Hitbox();
 
 	static Hitbox *platform(int x, int y);

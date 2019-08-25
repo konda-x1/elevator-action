@@ -3,7 +3,7 @@
 #include "glut/glut.h"
 
 
-AbstractHitbox::AbstractHitbox()
+AbstractHitbox::AbstractHitbox(bool solid) : solid(solid)
 {
 }
 

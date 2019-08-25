@@ -3,7 +3,7 @@
 #include <exception>
 
 
-ElevatorHitbox::ElevatorHitbox(Elevator *elevator, float offset_y) : elevator(elevator), offset_y(offset_y)
+ElevatorHitbox::ElevatorHitbox(Elevator *elevator, float offset_y, bool solid) : AbstractHitbox(solid), elevator(elevator), offset_y(offset_y)
 {
 	if (elevator == nullptr)
 		throw std::invalid_argument("Elevator cannot be null.");

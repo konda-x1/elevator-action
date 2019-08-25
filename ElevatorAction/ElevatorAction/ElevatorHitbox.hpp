@@ -8,7 +8,7 @@ public:
 	class Elevator *elevator;
 	float offset_y;
 
-	ElevatorHitbox(class Elevator *elevator, float offset_y = 0.0f);
+	ElevatorHitbox(class Elevator *elevator, float offset_y = 0.0f, bool solid = true);
 	~ElevatorHitbox();
 
 	float x1() const override;
