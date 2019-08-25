@@ -1,13 +1,16 @@
 #pragma once
 #include "AbstractHitbox.hpp"
+#include "Elevator.hpp"
 
 class Hitbox : public AbstractHitbox
 {
-	int _x1, _y1;
-	int _x2, _y2;
+	float _x1, _y1;
+	float _x2, _y2;
 public:
-	Hitbox(int x1, int y1, int x2, int y2);
+	Hitbox(float x1, float y1, float x2, float y2);
 	~Hitbox();
+
+	static Hitbox *platform(int x, int y);
 
 	float x1() const override;
 	float y1() const override;
