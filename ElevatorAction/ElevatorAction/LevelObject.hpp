@@ -11,5 +11,6 @@ public:
 	~LevelObject();
 	virtual void process(float delta) = 0;
 	virtual void render(float delta) = 0;
+	virtual void render_hitboxes(float delta, float r, float g, float b);
 };
 

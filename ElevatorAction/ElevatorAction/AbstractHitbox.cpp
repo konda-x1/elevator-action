@@ -1,5 +1,6 @@
 #include "AbstractHitbox.hpp"
 #include <algorithm>
+#include "glut/glut.h"
 
 
 AbstractHitbox::AbstractHitbox()
@@ -37,3 +38,10 @@ bool AbstractHitbox::collides(AbstractHitbox *h)
 	bool vertical = this->bottom() >= h->bottom() && this->bottom() <= h->top() || this->top() >= h->bottom() && this->top() <= h->top();
 	return horizontal && vertical;
 }
+
+void AbstractHitbox::render(float delta, float r, float g, float b)
+{
+	glColor3f(r, g, b);
+	glRectf(this->x1(), this->y1(), this->x2(), this->y2());
+}
+

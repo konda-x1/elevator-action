@@ -14,5 +14,6 @@ public:
 	float top();
 	float bottom();
 	bool collides(AbstractHitbox *h);
+	virtual void render(float delta, float r, float g, float b);
 };
 

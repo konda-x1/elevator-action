@@ -13,3 +13,10 @@ LevelObject::~LevelObject()
 		delete ah;
 	}
 }
+
+void LevelObject::render_hitboxes(float delta, float r, float g, float b)
+{
+	for (AbstractHitbox *ah : this->hitboxes) {
+		ah->render(delta, r, g, b);
+	}
+}
