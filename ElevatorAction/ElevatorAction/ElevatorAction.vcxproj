@@ -129,11 +129,13 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Elevator.cpp" />
     <ClCompile Include="AbstractHitbox.cpp" />
+    <ClCompile Include="ElevatorHitbox.cpp" />
     <ClCompile Include="EnemyDoor.cpp" />
     <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="LevelObject.cpp" />
+    <ClCompile Include="Platform.cpp" />
     <ClCompile Include="SingleFloorLevelObject.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
@@ -141,12 +143,14 @@
     <ClInclude Include="DocumentDoor.hpp" />
     <ClInclude Include="Door.hpp" />
     <ClInclude Include="Elevator.hpp" />
+    <ClInclude Include="ElevatorHitbox.hpp" />
     <ClInclude Include="EnemyDoor.hpp" />
     <ClInclude Include="glut\glut.h" />
     <ClInclude Include="AbstractHitbox.hpp" />
     <ClInclude Include="Hitbox.hpp" />
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelObject.hpp" />
+    <ClInclude Include="Platform.hpp" />
     <ClInclude Include="SingleFloorLevelObject.hpp" />
     <ClInclude Include="util.hpp" />
     <ClInclude Include="main.hpp" />
