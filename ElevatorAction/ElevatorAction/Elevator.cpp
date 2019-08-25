@@ -4,6 +4,10 @@
 #include "ElevatorHitbox.hpp"
 #include "util.hpp"
 
+const float Elevator::R = 0.15f;
+const float Elevator::G = 0.15f;
+const float Elevator::B = 0.15f;
+
 void Elevator::move_next()
 {
 	assert(this->max_floor > this->min_floor);
@@ -109,4 +113,5 @@ void Elevator::process(float delta)
 
 void Elevator::render(float delta)
 {
+	this->render_hitboxes(delta, this->R, this->G, this->B);
 }

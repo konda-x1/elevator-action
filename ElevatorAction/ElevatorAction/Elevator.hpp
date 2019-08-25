@@ -10,6 +10,10 @@ class Elevator : public LevelObject
 
 	void move_next();
 public:
+	static const float R;
+	static const float G;
+	static const float B;
+
 	float fy;
 	int min_floor;
 	int max_floor;
