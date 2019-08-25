@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <cmath>
 #include "Elevator.hpp"
+#include "ElevatorHitbox.hpp"
 #include "util.hpp"
 
 void Elevator::move_next()
@@ -22,6 +23,11 @@ Elevator::Elevator(int x, int min_floor, int max_floor, float vspeed) : LevelObj
 	this->target_floor = start_floor;
 
 	this->passive_direction = (randint(0, 1) == 0 ? -1 : 1);
+
+	this->hitbox_bottom = new ElevatorHitbox(this);
+	this->hitbox_top = new ElevatorHitbox(this, 1.0f);
+	this->hitboxes.push_back(hitbox_bottom);
+	this->hitboxes.push_back(hitbox_top);
 }
 
 Elevator::~Elevator()

@@ -1,5 +1,6 @@
 #pragma once
 #include "LevelObject.hpp"
+#include "ElevatorHitbox.hpp"
 
 class Elevator : public LevelObject
 {
@@ -14,6 +15,8 @@ public:
 	int max_floor;
 	int target_floor;
 	float vspeed; // Floors per second
+	class ElevatorHitbox *hitbox_bottom;
+	class ElevatorHitbox *hitbox_top;
 
 	Elevator(int x, int min_floor, int max_floor, float vspeed = 1.0f);
 	~Elevator();
