@@ -2,6 +2,7 @@
 #include "util.hpp"
 #include "DocumentDoor.hpp"
 #include "EnemyDoor.hpp"
+#include "Platform.hpp"
 #include <utility>
 #include <exception>
 
@@ -14,6 +15,7 @@ int Level::remaining_free()
 void Level::generate_missing()
 {
 	this->generate_missing_doors();
+	this->generate_missing_platforms();
 }
 
 void Level::generate_missing_doors()
@@ -27,6 +29,18 @@ void Level::generate_missing_doors()
 				this->add_xy(new EnemyDoor(x, y));
 			}
 			b = this->remaining_free() <= 0;
+		}
+	}
+}
+
+void Level::generate_missing_platforms()
+{
+	for (int y = 1; y <= this->height; y++) {
+		for (int x = 1; x <= this->width; x++) {
+			std::pair<int, int> xy = std::make_pair(x, y);
+			if (!this->platform_occupied.count(xy) && !this->elevator_occupied.count(xy)) { // Not occupied by either a platform or an elevator
+				this->add_platform(x, y);
+			}
 		}
 	}
 }
@@ -68,6 +82,12 @@ void Level::add_elevator(Elevator* e)
 		this->elevator_occupied.insert(xy);
 	}
 	this->objects.push_back(e);
+}
+
+void Level::add_platform(int x, int y)
+{
+	this->platform_occupied.insert(std::make_pair(x, y));
+	this->objects.push_back(new Platform(x, y));
 }
 
 void Level::add_xy(SingleFloorLevelObject * sflo)
