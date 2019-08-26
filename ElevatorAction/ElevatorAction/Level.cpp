@@ -1,5 +1,6 @@
 #include <utility>
 #include <exception>
+#include <iostream>
 #include "Level.hpp"
 #include "util.hpp"
 #include "DocumentDoor.hpp"
@@ -57,6 +58,8 @@ void Level::insert_document_doors()
 			posy = randint(1, this->height);
 		} while (this->occupied.count(std::make_pair(posx, posy)));
 		this->add_xy(new DocumentDoor(posx, posy));
+		--remaining_document;
+		std::cout << "Added DocumentDoor." << std::endl;
 	}
 }
 
@@ -108,7 +111,7 @@ void Level::render(float delta)
 {
 	glLoadIdentity();
 	glTranslatef(-1.0f, -1.0f, 0.0f);
-	glScalef(2.0f / (float)this->width, 2.0f / 3.0f, 1.0f);
+	glScalef(2.0f / (float)this->width, 2.0f / (float)this->width, 1.0f);
 	for (LevelObject *object : this->objects)
 		object->render(delta);
 }
