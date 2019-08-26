@@ -21,6 +21,12 @@ void Level::generate_missing()
 	this->generate_missing_platforms();
 }
 
+void Level::generate_roof()
+{
+	for (int x = 1; x <= this->width; x++)
+		this->add_platform(x, this->height + 1);
+}
+
 void Level::generate_missing_doors()
 {
 	this->insert_document_doors();
@@ -121,5 +127,6 @@ void Level::build()
 	if (this->built)
 		throw std::exception("Level has already been built");
 	this->generate_missing();
+	this->generate_roof();
 	//this->built = true;
 }

@@ -15,6 +15,7 @@ class Level
 
 	int remaining_free();
 	void generate_missing();
+	void generate_roof();
 	void generate_missing_doors();
 	void generate_missing_platforms();
 	void insert_document_doors();
