@@ -22,7 +22,7 @@ public:
 	class ElevatorHitbox *hitbox_bottom;
 	class ElevatorHitbox *hitbox_top;
 
-	Elevator(int x, int min_floor, int max_floor, float vspeed = 1.0f);
+	Elevator(int x, int min_floor, int max_floor, bool initially_active = false, float vspeed = 1.0f);
 	~Elevator();
 
 	int current_floor();

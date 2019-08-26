@@ -21,15 +21,21 @@ void Elevator::move_next()
 	this->move_generic(this->passive_direction);
 }
 
-Elevator::Elevator(int x, int min_floor, int max_floor, float vspeed) : LevelObject(x), min_floor(min_floor), max_floor(max_floor), vspeed(vspeed)
+Elevator::Elevator(int x, int min_floor, int max_floor, bool initially_active, float vspeed) : LevelObject(x), min_floor(min_floor), max_floor(max_floor), vspeed(vspeed)
 {
 	if (this->max_floor <= this->min_floor)
 		throw std::invalid_argument("Max. floor must be greater than min. floor");
-	int start_floor = randint(min_floor, max_floor);
+	int start_floor;
+	if (initially_active) {
+		start_floor = randint(min_floor, max_floor);
+		this->passive_direction = (randint(0, 1) == 0 ? -1 : 1);
+	}
+	else {
+		start_floor = max_floor;
+		this->passive_direction = 0;
+	}
 	this->fy = (float)start_floor;
 	this->target_floor = start_floor;
-
-	this->passive_direction = (randint(0, 1) == 0 ? -1 : 1);
 
 	this->hitbox_bottom = new ElevatorHitbox(this);
 	this->hitbox_top = new ElevatorHitbox(this, 1.0f);
@@ -76,11 +82,12 @@ bool Elevator::move_down()
 
 bool Elevator::move_generic(int direction)
 {
-	assert(direction == 1 || direction == -1);
+	assert(direction == 1 || direction == 0 || direction == -1);
 	if (direction == 1)
 		return this->move_up();
-	else
+	else if (direction == -1)
 		return this->move_down();
+	return false;
 }
 
 int Elevator::direction()
