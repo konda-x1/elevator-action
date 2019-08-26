@@ -19,6 +19,7 @@ class Level
 	void generate_missing_platforms();
 	void insert_document_doors();
 public:
+	class LevelManager *manager = nullptr;
 	int width;
 	int height;
 	int document_doors;

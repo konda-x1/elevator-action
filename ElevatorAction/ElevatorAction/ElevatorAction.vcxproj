@@ -133,6 +133,7 @@
     <ClCompile Include="EnemyDoor.cpp" />
     <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="LevelObject.cpp" />
     <ClCompile Include="Platform.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="AbstractHitbox.hpp" />
     <ClInclude Include="Hitbox.hpp" />
     <ClInclude Include="Level.hpp" />
+    <ClInclude Include="LevelManager.hpp" />
     <ClInclude Include="LevelObject.hpp" />
     <ClInclude Include="Platform.hpp" />
     <ClInclude Include="SingleFloorLevelObject.hpp" />
