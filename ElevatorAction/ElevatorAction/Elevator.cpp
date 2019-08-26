@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <cmath>
+#include <exception>
 #include "Elevator.hpp"
 #include "ElevatorHitbox.hpp"
 #include "util.hpp"
@@ -22,6 +23,8 @@ void Elevator::move_next()
 
 Elevator::Elevator(int x, int min_floor, int max_floor, float vspeed) : LevelObject(x), min_floor(min_floor), max_floor(max_floor), vspeed(vspeed)
 {
+	if (this->max_floor <= this->min_floor)
+		throw std::invalid_argument("Max. floor must be greater than min. floor");
 	int start_floor = randint(min_floor, max_floor);
 	this->fy = (float)start_floor;
 	this->target_floor = start_floor;
