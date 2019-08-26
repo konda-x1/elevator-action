@@ -26,11 +26,19 @@ void LevelManager::add(Level *level)
 
 bool LevelManager::go2next()
 {
-	if ((unsigned)this->current_index < this->levels.size() - 1) {
-		++this->current_index;
-		return true;
+	if (!this->is_game_over()) {
+		if ((unsigned)this->current_index < this->levels.size() - 1) {
+			++this->current_index;
+			return true;
+		}
+		this->game_over = true;
 	}
 	return false;
+}
+
+bool LevelManager::is_game_over() const
+{
+	return this->game_over;
 }
 
 void LevelManager::process(float delta)
