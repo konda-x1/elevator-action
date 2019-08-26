@@ -1,10 +1,12 @@
+#include <utility>
+#include <exception>
 #include "Level.hpp"
 #include "util.hpp"
 #include "DocumentDoor.hpp"
 #include "EnemyDoor.hpp"
 #include "Platform.hpp"
-#include <utility>
-#include <exception>
+
+#include "glut/glut.h"
 
 
 int Level::remaining_free()
@@ -104,6 +106,9 @@ void Level::process(float delta)
 
 void Level::render(float delta)
 {
+	glLoadIdentity();
+	glTranslatef(-1.0f, -1.0f, 0.0f);
+	glScalef(2.0f / (float)this->width, 2.0f / 3.0f, 1.0f);
 	for (LevelObject *object : this->objects)
 		object->render(delta);
 }
