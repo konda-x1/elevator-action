@@ -4,10 +4,12 @@
 #include <utility>
 #include "LevelObject.hpp"
 #include "SingleFloorLevelObject.hpp"
+#include "PlayerSpawnPoint.hpp"
 #include "Elevator.hpp"
 class Level
 {
-	std::vector<LevelObject*> objects = std::vector<LevelObject*>();
+	std::vector<LevelObject *> objects = std::vector<LevelObject *>();
+	std::vector<PlayerSpawnPoint *> spawns = std::vector<PlayerSpawnPoint *>();
 	std::set<std::pair<int, int>> occupied = std::set<std::pair<int, int>>();
 	std::set<std::pair<int, int>> elevator_occupied = std::set<std::pair<int, int>>();
 	std::set<std::pair<int, int>> platform_occupied = std::set<std::pair<int, int>>();
@@ -15,6 +17,7 @@ class Level
 
 	int remaining_free();
 	void generate_missing();
+	void generate_missing_spawnpoint();
 	void generate_roof();
 	void generate_missing_doors();
 	void generate_missing_platforms();
@@ -31,6 +34,7 @@ public:
 	int size();
 	void add_elevator(Elevator *e);
 	void add_platform(int x, int y);
+	void add_spawnpoint(int x, int y);
 	void add_xy(SingleFloorLevelObject *sflo);
 	void process(float delta);
 	void render(float delta);

@@ -137,6 +137,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="LevelObject.cpp" />
     <ClCompile Include="Platform.cpp" />
+    <ClCompile Include="PlayerSpawnPoint.cpp" />
     <ClCompile Include="SingleFloorLevelObject.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="LevelManager.hpp" />
     <ClInclude Include="LevelObject.hpp" />
     <ClInclude Include="Platform.hpp" />
+    <ClInclude Include="PlayerSpawnPoint.hpp" />
     <ClInclude Include="SingleFloorLevelObject.hpp" />
     <ClInclude Include="util.hpp" />
     <ClInclude Include="main.hpp" />

@@ -17,8 +17,21 @@ int Level::remaining_free()
 
 void Level::generate_missing()
 {
+	this->generate_missing_spawnpoint();
 	this->generate_missing_doors();
 	this->generate_missing_platforms();
+}
+
+void Level::generate_missing_spawnpoint()
+{
+	if(this->spawns.size() <= 0)
+		for(int x = 1; x <= this->width; x++)
+			for(int y = this->height; y >= 1; y--)
+				if (this->occupied.count(std::make_pair(x, y)) == 0) {
+					this->add_spawnpoint(x, y);
+					//std::cout << "Added PlayerSpawnPoint." << std::endl;
+					return;
+				}
 }
 
 void Level::generate_roof()
@@ -65,7 +78,7 @@ void Level::insert_document_doors()
 		} while (this->occupied.count(std::make_pair(posx, posy)));
 		this->add_xy(new DocumentDoor(posx, posy));
 		--remaining_document;
-		std::cout << "Added DocumentDoor." << std::endl;
+		//std::cout << "Added DocumentDoor." << std::endl;
 	}
 }
 
@@ -97,8 +110,14 @@ void Level::add_elevator(Elevator* e)
 
 void Level::add_platform(int x, int y)
 {
-	this->platform_occupied.insert(std::make_pair(x, y));
-	this->objects.push_back(new Platform(x, y));
+	this->add_xy(new Platform(x, y));
+}
+
+void Level::add_spawnpoint(int x, int y)
+{
+	PlayerSpawnPoint *spawn = new PlayerSpawnPoint(x, y);
+	this->add_xy(spawn);
+	this->spawns.push_back(spawn);
 }
 
 void Level::add_xy(SingleFloorLevelObject * sflo)
