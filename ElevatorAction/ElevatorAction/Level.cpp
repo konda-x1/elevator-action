@@ -128,12 +128,16 @@ void Level::add_xy(SingleFloorLevelObject * sflo)
 
 void Level::process(float delta)
 {
+	if (!this->built)
+		throw std::exception("Cannot process a level which hasn't been built");
 	for (LevelObject *object : this->objects)
 		object->process(delta);
 }
 
 void Level::render(float delta)
 {
+	if (!this->built)
+		throw std::exception("Cannot render a level which hasn't been built");
 	glLoadIdentity();
 	glTranslatef(-1.0f, -1.0f, 0.0f);
 	glScalef(2.0f / (float)this->width, 2.0f / (float)this->width, 1.0f);
@@ -147,5 +151,5 @@ void Level::build()
 		throw std::exception("Level has already been built");
 	this->generate_missing();
 	this->generate_roof();
-	//this->built = true;
+	this->built = true;
 }
