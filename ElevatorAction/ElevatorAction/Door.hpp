@@ -1,6 +1,7 @@
 #pragma once
 #include "SingleFloorLevelObject.hpp"
 #include "Hitbox.hpp"
+
 class Door :
 	public SingleFloorLevelObject
 {
@@ -11,7 +12,7 @@ public:
 	static const float HEIGHT;
 	static const float WINDOW_FRAME_WIDTH;
 	static const float KNOB_WIDTH;
-	class Hitbox *hitbox;
+	Hitbox *hitbox;
 
 	float r;
 	float g;

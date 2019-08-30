@@ -1,10 +1,12 @@
 #pragma once
 #include "Level.hpp"
+
+class Level;
 class Player : public Usable
 {
 public:
 	float x, y;
-	class Level *level = nullptr;
+	Level *level = nullptr;
 
 	Player();
 	Player(Level *level, float x, float y);

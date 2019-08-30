@@ -8,14 +8,17 @@
 #include "PlayerSpawnPoint.hpp"
 #include "Elevator.hpp"
 #include "Player.hpp"
+
+class PlayerSpawnPoint;
+class LevelManager;
 class Level : public Usable
 {
 	std::vector<LevelObject *> objects = std::vector<LevelObject *>();
-	std::vector<class PlayerSpawnPoint *> spawns = std::vector<class PlayerSpawnPoint *>();
+	std::vector<PlayerSpawnPoint *> spawns = std::vector<PlayerSpawnPoint *>();
 	std::set<std::pair<int, int>> occupied = std::set<std::pair<int, int>>();
 	std::set<std::pair<int, int>> elevator_occupied = std::set<std::pair<int, int>>();
 	std::set<std::pair<int, int>> platform_occupied = std::set<std::pair<int, int>>();
-	class Player *player;
+	Player *player;
 	bool built = false;
 
 	int remaining_free();
@@ -25,9 +28,9 @@ class Level : public Usable
 	void generate_missing_doors();
 	void generate_missing_platforms();
 	void insert_document_doors();
-	class Player *spawn(class Player *player);
+	Player *spawn(Player *player);
 public:
-	class LevelManager *manager = nullptr;
+	LevelManager *manager = nullptr;
 	int width;
 	int height;
 	int document_doors;
