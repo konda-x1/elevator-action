@@ -2,12 +2,14 @@
 #include "LevelObject.hpp"
 #include "ElevatorHitbox.hpp"
 
+class ElevatorHitbox;
 class Elevator : public LevelObject
 {
 	float wait_time = 2.0f;
 	float wait_time_elapsed = 0.0f;
 	int passive_direction; //1 == up, -1 == down
 
+	ElevatorHitbox *make_hitbox_inside();
 	void move_next();
 public:
 	static const float R;
@@ -19,8 +21,9 @@ public:
 	int max_floor;
 	int target_floor;
 	float vspeed; // Floors per second
-	class ElevatorHitbox *hitbox_bottom;
-	class ElevatorHitbox *hitbox_top;
+	ElevatorHitbox *hitbox_bottom = nullptr;
+	ElevatorHitbox *hitbox_top = nullptr;
+	ElevatorHitbox *hitbox_inside = nullptr;
 
 	Elevator(int x, int min_floor, int max_floor, bool initially_active = false, float vspeed = 1.0f);
 	~Elevator();
