@@ -140,6 +140,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerSpawnPoint.cpp" />
     <ClCompile Include="SingleFloorLevelObject.cpp" />
+    <ClCompile Include="Usable.cpp" />
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerSpawnPoint.hpp" />
     <ClInclude Include="SingleFloorLevelObject.hpp" />
+    <ClInclude Include="Usable.hpp" />
     <ClInclude Include="util.hpp" />
     <ClInclude Include="main.hpp" />
   </ItemGroup>

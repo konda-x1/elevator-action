@@ -2,12 +2,13 @@
 #include <vector>
 #include <set>
 #include <utility>
+#include "Usable.hpp"
 #include "LevelObject.hpp"
 #include "SingleFloorLevelObject.hpp"
 #include "PlayerSpawnPoint.hpp"
 #include "Elevator.hpp"
 #include "Player.hpp"
-class Level
+class Level : public Usable
 {
 	std::vector<LevelObject *> objects = std::vector<LevelObject *>();
 	std::vector<class PlayerSpawnPoint *> spawns = std::vector<class PlayerSpawnPoint *>();
@@ -40,7 +41,7 @@ public:
 	void add_spawnpoint(int x, int y);
 	void add_xy(SingleFloorLevelObject *sflo);
 	void set_player(Player *player);
-	void check_usable();
+	void check_usable() override;
 	void process(float delta);
 	void render(float delta);
 	void build();

@@ -1,7 +1,8 @@
 #pragma once
+#include "Usable.hpp"
 #include "AbstractHitbox.hpp"
 #include <vector>
-class LevelObject
+class LevelObject : public Usable
 {
 public:
 	int x;

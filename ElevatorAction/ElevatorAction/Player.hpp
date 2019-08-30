@@ -1,6 +1,6 @@
 #pragma once
 #include "Level.hpp"
-class Player
+class Player : public Usable
 {
 public:
 	float x, y;
@@ -10,7 +10,7 @@ public:
 	Player(Level *level, float x, float y);
 	~Player();
 
-	void check_usable();
+	void check_usable() override;
 	void process(float delta);
 	void render(float delta);
 };
