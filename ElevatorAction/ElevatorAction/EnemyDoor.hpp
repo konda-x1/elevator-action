@@ -7,6 +7,6 @@ public:
 	EnemyDoor(int x, int y);
 	~EnemyDoor();
 
-	void process(float delta) override;
+	void process(float delta, Player *player) override;
 };
 

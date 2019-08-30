@@ -25,6 +25,6 @@ public:
 	virtual void render_halfopen();
 	virtual void render_open();
 	void render(float delta) override;
-	void process(float delta) override;
+	void process(float delta, Player *player) override;
 };
 

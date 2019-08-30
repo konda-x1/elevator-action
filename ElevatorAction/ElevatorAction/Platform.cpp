@@ -15,7 +15,7 @@ Platform::~Platform()
 {
 }
 
-void Platform::process(float delta)
+void Platform::process(float delta, Player *player)
 {
 }
 

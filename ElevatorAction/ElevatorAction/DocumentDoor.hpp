@@ -7,6 +7,6 @@ public:
 	DocumentDoor(int x, int y);
 	~DocumentDoor();
 
-	void process(float delta) override;
+	void process(float delta, Player *player) override;
 };
 

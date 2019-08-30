@@ -20,7 +20,7 @@ Player * PlayerSpawnPoint::spawn(Level *level, Player * player = nullptr)
 	return player;
 }
 
-void PlayerSpawnPoint::process(float delta)
+void PlayerSpawnPoint::process(float delta, Player *player)
 {
 }
 

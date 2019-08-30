@@ -11,7 +11,7 @@ DocumentDoor::~DocumentDoor()
 {
 }
 
-void DocumentDoor::process(float delta)
+void DocumentDoor::process(float delta, Player *player)
 {
-	Door::process(delta); // Process elapsed time if door is open
+	Door::process(delta, player); // Process elapsed time if door is open
 }

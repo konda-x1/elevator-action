@@ -101,7 +101,7 @@ int Elevator::direction()
 		return this->passive_direction;
 }
 
-void Elevator::process(float delta)
+void Elevator::process(float delta, Player *player)
 {
 	if (this->is_moving()) {
 		float sign = (float)this->direction();

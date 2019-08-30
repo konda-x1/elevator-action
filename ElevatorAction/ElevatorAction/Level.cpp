@@ -149,7 +149,7 @@ void Level::process(float delta)
 {
 	this->check_usable();
 	for (LevelObject *object : this->objects)
-		object->process(delta);
+		object->process(delta, this->player);
 }
 
 void Level::render(float delta)

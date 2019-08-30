@@ -144,7 +144,7 @@ void Door::render(float delta)
 		this->render_halfopen();
 }
 
-void Door::process(float delta)
+void Door::process(float delta, Player *player)
 {
 	if (this->open)
 		this->open_elapsed += delta;
