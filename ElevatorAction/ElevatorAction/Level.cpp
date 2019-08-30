@@ -82,7 +82,15 @@ void Level::insert_document_doors()
 	}
 }
 
-Level::Level(int width, int height, int document_doors): width(width), height(height), document_doors(document_doors)
+Player *Level::spawn(Player * player = nullptr)
+{
+	if (this->spawns.size() <= 0)
+		throw std::exception("No spawn points for Player in Level");
+	int rand_index = randint(0, this->spawns.size() - 1);
+	return this->spawns.at(rand_index)->spawn(this, player);
+}
+
+Level::Level(int width, int height, int document_doors, Player *player): width(width), height(height), document_doors(document_doors), player(player)
 {
 }
 
@@ -126,18 +134,27 @@ void Level::add_xy(SingleFloorLevelObject * sflo)
 	this->objects.push_back(sflo);
 }
 
-void Level::process(float delta)
+void Level::set_player(Player * player)
+{
+	this->player = this->spawn(player);
+}
+
+void Level::check_usable()
 {
 	if (!this->built)
-		throw std::exception("Cannot process a level which hasn't been built");
+		throw std::exception("Level hasn't been built");
+}
+
+void Level::process(float delta)
+{
+	this->check_usable();
 	for (LevelObject *object : this->objects)
 		object->process(delta);
 }
 
 void Level::render(float delta)
 {
-	if (!this->built)
-		throw std::exception("Cannot render a level which hasn't been built");
+	this->check_usable();
 	glLoadIdentity();
 	glTranslatef(-1.0f, -1.0f, 0.0f);
 	glScalef(2.0f / (float)this->width, 2.0f / (float)this->width, 1.0f);
