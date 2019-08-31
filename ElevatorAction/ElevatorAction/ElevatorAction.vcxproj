@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CollisionHelper.cpp" />
     <ClCompile Include="DocumentDoor.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Elevator.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollisionHelper.hpp" />
     <ClInclude Include="DocumentDoor.hpp" />
     <ClInclude Include="Door.hpp" />
     <ClInclude Include="Elevator.hpp" />

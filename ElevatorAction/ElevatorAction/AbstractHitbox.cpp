@@ -32,10 +32,10 @@ float AbstractHitbox::bottom()
 	return (float)std::min(this->y1(), this->y2());
 }
 
-bool AbstractHitbox::collides(AbstractHitbox *h)
+bool AbstractHitbox::intersects(AbstractHitbox *h)
 {
-	bool horizontal = this->left() >= h->left() && this->left() <= h->right() || this->right() >= h->left() && this->right() <= h->right();
-	bool vertical = this->bottom() >= h->bottom() && this->bottom() <= h->top() || this->top() >= h->bottom() && this->top() <= h->top();
+	bool horizontal = this->left() > h->left() && this->left() < h->right() || this->right() > h->left() && this->right() < h->right();
+	bool vertical = this->bottom() > h->bottom() && this->bottom() < h->top() || this->top() > h->bottom() && this->top() < h->top();
 	return horizontal && vertical;
 }
 

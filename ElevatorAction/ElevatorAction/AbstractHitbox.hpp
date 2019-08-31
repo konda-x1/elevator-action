@@ -14,7 +14,7 @@ public:
 	float right();
 	float top();
 	float bottom();
-	bool collides(AbstractHitbox *h);
+	bool intersects(AbstractHitbox *h);
 	virtual void render(float delta, float r, float g, float b);
 };
 
