@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <cmath>
 #include "util.hpp"
 
 int randint(int min_val, int max_val)
@@ -24,4 +25,16 @@ float to_x2(int x, int y, float width, float height)
 float to_y2(int x, int y, float width, float height)
 {
 	return (float)y - 1.0f;
+}
+
+void v2normalize(float *x, float *y)
+{
+	float length = v2len(*x, *y);
+	*x /= length;
+	*y /= length;
+}
+
+float v2len(float x, float y)
+{
+	return sqrtf(x*x + y*y);
 }
