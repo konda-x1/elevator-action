@@ -78,7 +78,7 @@ std::pair<float, float> CollisionHelper::move_nointersect(AbstractHitbox * movin
 	auto *min_xy = &current_xy;
 	for (AbstractHitbox *h : standing_hitboxes) {
 		auto new_xy = CollisionHelper::move_nointersect(moving_hitbox, dx, dy, h);
-		if (new_xy < *min_xy) {
+		if (v2len(new_xy) < v2len(*min_xy)) {
 			min_xy = &new_xy;
 		}
 	}
