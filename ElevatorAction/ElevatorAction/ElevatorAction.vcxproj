@@ -130,6 +130,7 @@
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Elevator.cpp" />
     <ClCompile Include="AbstractHitbox.cpp" />
+    <ClCompile Include="ElevatorDeathbox.cpp" />
     <ClCompile Include="ElevatorHitbox.cpp" />
     <ClCompile Include="EnemyDoor.cpp" />
     <ClCompile Include="Hitbox.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="DocumentDoor.hpp" />
     <ClInclude Include="Door.hpp" />
     <ClInclude Include="Elevator.hpp" />
+    <ClInclude Include="ElevatorDeathbox.hpp" />
     <ClInclude Include="ElevatorHitbox.hpp" />
     <ClInclude Include="EnemyDoor.hpp" />
     <ClInclude Include="glut\glut.h" />

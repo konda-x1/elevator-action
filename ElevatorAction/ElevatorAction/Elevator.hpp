@@ -1,8 +1,10 @@
 #pragma once
 #include "LevelObject.hpp"
 #include "ElevatorHitbox.hpp"
+#include "ElevatorDeathbox.hpp"
 
 class ElevatorHitbox;
+class ElevatorDeathbox;
 class Elevator : public LevelObject
 {
 	float wait_time = 2.0f;
@@ -10,6 +12,7 @@ class Elevator : public LevelObject
 	int passive_direction; //1 == up, -1 == down
 
 	ElevatorHitbox *make_hitbox_inside();
+	void init_hitboxes();
 	void move_next();
 public:
 	static const float R;
@@ -24,6 +27,7 @@ public:
 	ElevatorHitbox *hitbox_bottom = nullptr;
 	ElevatorHitbox *hitbox_top = nullptr;
 	ElevatorHitbox *hitbox_inside = nullptr;
+	ElevatorDeathbox *hitbox_death = nullptr;
 
 	Elevator(int x, int min_floor, int max_floor, bool initially_active = false, float vspeed = 1.0f);
 	~Elevator();
