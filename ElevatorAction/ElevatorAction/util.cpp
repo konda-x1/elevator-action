@@ -34,7 +34,17 @@ void v2normalize(float *x, float *y)
 	*y /= length;
 }
 
+void v2normalize(std::pair<float, float>* xy)
+{
+	v2normalize(&xy->first, &xy->second);
+}
+
 float v2len(float x, float y)
 {
 	return sqrtf(x*x + y*y);
+}
+
+float v2len(std::pair<float, float> xy)
+{
+	return v2len(xy.first, xy.second);
 }

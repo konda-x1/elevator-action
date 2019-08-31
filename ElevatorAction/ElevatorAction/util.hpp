@@ -6,4 +6,6 @@ float to_y1(int x, int y, float width, float height);
 float to_x2(int x, int y, float width, float height);
 float to_y2(int x, int y, float width, float height);
 void v2normalize(float *x, float *y);
+void v2normalize(std::pair<float, float> *xy);
 float v2len(float x, float y);
+float v2len(std::pair<float, float> xy);
