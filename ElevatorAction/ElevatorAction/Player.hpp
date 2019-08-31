@@ -1,15 +1,19 @@
 #pragma once
 #include "Level.hpp"
+#include "PlayerHitbox.hpp"
 
 class Level;
+class PlayerHitbox;
 class Player : public Usable
 {
 public:
-	float x, y;
+	float fx, fy; // Coordinates of the lower left point of the player
+	float width = 0.2f, height = 0.5f;
 	Level *level = nullptr;
+	PlayerHitbox *hitbox = nullptr;
 
 	Player();
-	Player(Level *level, float x, float y);
+	Player(Level *level, float fx, float fy);
 	~Player();
 
 	void check_usable() override;

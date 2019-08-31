@@ -15,8 +15,8 @@ Player * PlayerSpawnPoint::spawn(Level *level, Player * player = nullptr)
 		player = new Player();
 	}
 	player->level = level;
-	player->x = (float)this->x - 1.0f;
-	player->y = (float)this->y;
+	player->fx = (float)this->x - 0.5f - player->width / 2.0f;
+	player->fy = (float)this->y - 1.0f + Platform::THICKNESS;
 	return player;
 }
 

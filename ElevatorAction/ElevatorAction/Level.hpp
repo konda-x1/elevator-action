@@ -28,7 +28,7 @@ class Level : public Usable
 	void generate_missing_doors();
 	void generate_missing_platforms();
 	void insert_document_doors();
-	Player *spawn(Player *player);
+	Player *spawn(Player *player = nullptr);
 public:
 	LevelManager *manager = nullptr;
 	int width;
@@ -43,7 +43,7 @@ public:
 	void add_platform(int x, int y);
 	void add_spawnpoint(int x, int y);
 	void add_xy(SingleFloorLevelObject *sflo);
-	void set_player(Player *player);
+	void set_player(Player *player = nullptr);
 	void check_usable() override;
 	void process(float delta);
 	void render(float delta);

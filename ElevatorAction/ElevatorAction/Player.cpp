@@ -4,10 +4,12 @@
 
 Player::Player()
 {
+	this->hitbox = new PlayerHitbox(this);
 }
 
-Player::Player(Level *level, float x, float y): level(level), x(x), y(y)
+Player::Player(Level *level, float fx, float fy): level(level), fx(fx), fy(fy)
 {
+	Player();
 }
 
 
@@ -29,4 +31,5 @@ void Player::process(float delta)
 void Player::render(float delta)
 {
 	this->check_usable();
+	this->hitbox->render(delta, 0.0f, 0.8f, 0.0f);
 }

@@ -82,7 +82,7 @@ void Level::insert_document_doors()
 	}
 }
 
-Player *Level::spawn(Player * player = nullptr)
+Player *Level::spawn(Player * player)
 {
 	if (this->spawns.size() <= 0)
 		throw std::exception("No spawn points for Player in Level");
@@ -160,6 +160,7 @@ void Level::render(float delta)
 	glScalef(2.0f / (float)this->width, 2.0f / (float)this->width, 1.0f);
 	for (LevelObject *object : this->objects)
 		object->render(delta);
+	this->player->render(delta);
 }
 
 void Level::build()
