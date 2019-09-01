@@ -75,6 +75,12 @@
     <ClCompile Include="PlayerHitbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.hpp">
@@ -140,6 +146,15 @@
     <ClInclude Include="PlayerHitbox.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Game.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInput.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="glut\glut32.lib">
@@ -148,5 +163,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="glut\glut32.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ElevatorAction.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>
