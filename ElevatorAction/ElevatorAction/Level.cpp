@@ -6,6 +6,7 @@
 #include "DocumentDoor.hpp"
 #include "EnemyDoor.hpp"
 #include "Platform.hpp"
+#include "CollisionHelper.hpp"
 
 #include "glut/glut.h"
 
@@ -95,6 +96,15 @@ void Level::add_exit()
 	this->add_elevator(new Elevator(1, 0, 1));
 }
 
+void Level::add_hitboxes()
+{
+	for (LevelObject *lo : this->objects) {
+		for (AbstractHitbox *h : lo->hitboxes) {
+			this->hitboxes.push_back(h);
+		}
+	}
+}
+
 Level::Level(int width, int height, int document_doors, Player *player): width(width), height(height), document_doors(document_doors), player(player)
 {
 	this->add_exit();
@@ -162,6 +172,13 @@ void Level::set_player(Player * player)
 	this->player = this->spawn(player);
 }
 
+void Level::move_player(float dx, float dy)
+{
+	std::pair<float, float>dxdy = CollisionHelper::move_and_collide(this->player->hitbox, dx, dy, this->hitboxes);
+	player->fx += dxdy.first;
+	player->fy += dxdy.second;
+}
+
 void Level::check_usable()
 {
 	if (!this->built)
@@ -198,5 +215,6 @@ void Level::build()
 		throw std::exception("Level has already been built");
 	this->generate_missing();
 	this->generate_roof();
+	this->add_hitboxes();
 	this->built = true;
 }

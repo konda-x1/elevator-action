@@ -30,8 +30,10 @@ class Level : public Usable
 	void insert_document_doors();
 	Player *spawn(Player *player = nullptr);
 	void add_exit();
+	void add_hitboxes();
 public:
 	LevelManager *manager = nullptr;
+	std::vector<AbstractHitbox *> hitboxes = std::vector<AbstractHitbox *>();
 	int width;
 	int height;
 	int document_doors;
@@ -45,6 +47,7 @@ public:
 	void add_spawnpoint(int x, int y);
 	void add_xy(SingleFloorLevelObject *sflo);
 	void set_player(Player *player = nullptr);
+	void move_player(float dx, float dy);
 	void check_usable() override;
 	void transition_to(Level *level);
 	void process(float delta);
