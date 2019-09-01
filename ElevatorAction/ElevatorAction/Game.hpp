@@ -8,11 +8,11 @@ class LevelManager;
 class GameState;
 class Game
 {
-	Player player = Player();
 public:
 	LevelManager levels;
 	UserInput input;
 	GameState *gamestate;
+	Player player = Player();
 
 	Game();
 	~Game();

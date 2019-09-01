@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.hpp"
+#include "Game.hpp"
 class GameStateInGame :
 	public GameState
 {

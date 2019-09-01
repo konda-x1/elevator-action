@@ -176,6 +176,7 @@ void Level::transition_to(Level * level)
 void Level::process(float delta)
 {
 	this->check_usable();
+	this->player->process(delta);
 	for (LevelObject *object : this->objects)
 		object->process(delta, this->player);
 }

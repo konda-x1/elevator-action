@@ -3,7 +3,6 @@ class Game;
 
 class GameState
 {
-	Game *game;
 public:
 	enum GS {
 		MAIN_MENU,
@@ -12,6 +11,7 @@ public:
 		GAME_OVER,
 		EXIT,
 	} state;
+	Game *game;
 	GameState(Game *game, GS state);
 	~GameState();
 
