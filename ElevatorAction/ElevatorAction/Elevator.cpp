@@ -21,11 +21,15 @@ void Elevator::init_hitboxes()
 	this->hitbox_bottom = new ElevatorHitbox(this);
 	this->hitbox_top = new ElevatorHitbox(this, 1.0f);
 	this->hitbox_inside = this->make_hitbox_inside();
-	this->hitbox_death = new ElevatorDeathbox(this);
 	this->hitboxes.push_back(hitbox_bottom);
 	this->hitboxes.push_back(hitbox_top);
 	this->hitboxes.push_back(hitbox_inside);
-	this->hitboxes.push_back(hitbox_death);
+	
+	for (int floor = this->min_floor; floor < this->max_floor; floor++) {
+		ElevatorDeathbox *hitbox_death = new ElevatorDeathbox(this, floor);
+		this->hitboxes_death.push_back(hitbox_death);
+		this->hitboxes.push_back(hitbox_death);
+	}
 }
 
 void Elevator::move_next()
@@ -142,5 +146,6 @@ void Elevator::render(float delta)
 	this->hitbox_top->render(delta, this->R, this->G, this->B);
 	this->hitbox_bottom->render(delta, this->R, this->G, this->B);
 	this->hitbox_inside->render(delta, 0.15f, 0.0f, 0.6f);
-	this->hitbox_death->render(delta, 0.6f, 0.0f, 0.0f);
+	for(ElevatorDeathbox *hitbox_death : this->hitboxes_death)
+		hitbox_death->render(delta, 0.6f, 0.0f, 0.0f);
 }

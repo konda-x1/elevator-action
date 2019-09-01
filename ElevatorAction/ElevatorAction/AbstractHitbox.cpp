@@ -12,22 +12,22 @@ AbstractHitbox::~AbstractHitbox()
 {
 }
 
-float AbstractHitbox::left()
+float AbstractHitbox::left() const
 {
 	return (float)std::min(this->x1(), this->x2());
 }
 
-float AbstractHitbox::right()
+float AbstractHitbox::right() const
 {
 	return (float)std::max(this->x1(), this->x2());
 }
 
-float AbstractHitbox::top()
+float AbstractHitbox::top() const
 {
 	return (float)std::max(this->y1(), this->y2());
 }
 
-float AbstractHitbox::bottom()
+float AbstractHitbox::bottom() const
 {
 	return (float)std::min(this->y1(), this->y2());
 }

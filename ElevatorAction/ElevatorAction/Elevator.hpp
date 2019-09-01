@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "LevelObject.hpp"
 #include "ElevatorHitbox.hpp"
 #include "ElevatorDeathbox.hpp"
@@ -27,7 +28,7 @@ public:
 	ElevatorHitbox *hitbox_bottom = nullptr;
 	ElevatorHitbox *hitbox_top = nullptr;
 	ElevatorHitbox *hitbox_inside = nullptr;
-	ElevatorDeathbox *hitbox_death = nullptr;
+	std::vector<ElevatorDeathbox *> hitboxes_death = std::vector<ElevatorDeathbox *>();
 
 	Elevator(int x, int min_floor, int max_floor, bool initially_active = false, float vspeed = 1.0f);
 	~Elevator();

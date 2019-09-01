@@ -10,10 +10,10 @@ public:
 	virtual float y1() const = 0;
 	virtual float x2() const = 0;
 	virtual float y2() const = 0;
-	float left();
-	float right();
-	float top();
-	float bottom();
+	float left() const;
+	float right() const;
+	float top() const;
+	float bottom() const;
 	bool intersects(AbstractHitbox *h);
 	virtual void render(float delta, float r, float g, float b);
 };
