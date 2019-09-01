@@ -17,4 +17,5 @@ void GameStateInGame::process(float delta)
 
 void GameStateInGame::render(float delta)
 {
+	this->game->levels.render(delta);
 }

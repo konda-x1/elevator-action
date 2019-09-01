@@ -4,7 +4,7 @@
 
 
 
-Game::Game() : input(UserInput()), levels(LevelManager(this))
+Game::Game() : input(UserInput()), levels(LevelManager(this)), gamestate(GameStates::in_game(this))
 {
 }
 
@@ -67,10 +67,10 @@ void Game::game_over()
 
 void Game::process(float delta)
 {
-	this->levels.process(delta);
+	this->gamestate->process(delta);
 }
 
 void Game::render(float delta)
 {
-	this->levels.render(delta);
+	this->gamestate->render(delta);
 }
