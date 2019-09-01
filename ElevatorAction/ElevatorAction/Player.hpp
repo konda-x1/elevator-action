@@ -1,6 +1,7 @@
 #pragma once
 #include "Level.hpp"
 #include "PlayerHitbox.hpp"
+#include "UserInput.hpp"
 
 class Level;
 class PlayerHitbox;
@@ -18,7 +19,6 @@ public:
 	~Player();
 
 	void check_usable() override;
-	void reset_inputs();
 	void process(float delta);
 	void render(float delta);
 };
