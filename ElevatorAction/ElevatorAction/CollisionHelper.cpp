@@ -72,11 +72,17 @@ std::pair<float, float> CollisionHelper::move_nointersect(AbstractHitbox * movin
 	return std::make_pair(scale * dx, scale * dy);
 }
 
-std::pair<float, float> CollisionHelper::move_nointersect(AbstractHitbox * moving_hitbox, float dx, float dy, std::vector<AbstractHitbox*> standing_hitboxes)
+std::pair<float, float> CollisionHelper::move_and_collide(AbstractHitbox * moving_hitbox, float dx, float dy, std::vector<AbstractHitbox*> standing_hitboxes, bool solid_only)
 {
 	auto current_xy = std::make_pair(dx, dy);
+	if (solid_only && !moving_hitbox->solid) {
+		return current_xy;
+	}
 	auto *min_xy = &current_xy;
 	for (AbstractHitbox *h : standing_hitboxes) {
+		if (solid_only && !h->solid) {
+			continue;
+		}
 		auto new_xy = CollisionHelper::move_nointersect(moving_hitbox, dx, dy, h);
 		if (v2len(new_xy) < v2len(*min_xy)) {
 			min_xy = &new_xy;
