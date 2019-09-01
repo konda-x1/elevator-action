@@ -90,8 +90,14 @@ Player *Level::spawn(Player * player)
 	return this->spawns.at(rand_index)->spawn(this, player);
 }
 
+void Level::add_exit()
+{
+	this->add_elevator(new Elevator(1, 0, 1));
+}
+
 Level::Level(int width, int height, int document_doors, Player *player): width(width), height(height), document_doors(document_doors), player(player)
 {
+	this->add_exit();
 }
 
 
@@ -108,6 +114,14 @@ int Level::size()
 
 void Level::add_elevator(Elevator* e)
 {
+	// Check if elevator space is occupied/compromised
+	for (int i = e->min_floor; i <= e->max_floor; i++) {
+		auto xy = std::pair<int, int>(e->x, i);
+		if (this->occupied.count(xy) || this->platform_occupied.count(xy)) {
+			throw std::exception("Position occupied");
+		}
+	}
+	// Add elevator
 	for (int i = e->min_floor; i <= e->max_floor; i++) {
 		auto xy = std::pair<int, int>(e->x, i);
 		this->occupied.insert(xy);
@@ -118,11 +132,18 @@ void Level::add_elevator(Elevator* e)
 
 void Level::add_platform(int x, int y)
 {
-	this->add_xy(new Platform(x, y));
+	std::pair<int,int> xy = std::make_pair(x, y);
+	if (this->platform_occupied.count(xy))
+		throw std::exception("Position occupied");
+
+	this->platform_occupied.insert(xy);
+	this->objects.push_back(new Platform(x,y));
 }
 
 void Level::add_spawnpoint(int x, int y)
 {
+	if (this->occupied.count(std::make_pair(x, y)))
+		throw std::exception("Position occupied");
 	PlayerSpawnPoint *spawn = new PlayerSpawnPoint(x, y);
 	this->add_xy(spawn);
 	this->spawns.push_back(spawn);
@@ -130,6 +151,8 @@ void Level::add_spawnpoint(int x, int y)
 
 void Level::add_xy(SingleFloorLevelObject * sflo)
 {
+	if (this->occupied.count(std::make_pair(sflo->x, sflo->y)))
+		throw std::exception("Position occupied");
 	this->occupied.insert(std::make_pair(sflo->x, sflo->y));
 	this->objects.push_back(sflo);
 }
@@ -143,6 +166,11 @@ void Level::check_usable()
 {
 	if (!this->built)
 		throw std::exception("Level hasn't been built");
+}
+
+void Level::transition_to(Level * level)
+{
+	level->set_player(this->player);
 }
 
 void Level::process(float delta)

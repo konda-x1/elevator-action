@@ -28,7 +28,11 @@ bool LevelManager::go2next()
 {
 	if (!this->is_game_over()) {
 		if ((unsigned)this->current_index < this->levels.size() - 1) {
+			Level *current = this->levels.at(current_index);
+			Level *next = this->levels.at(current_index + 1);
+			current->transition_to(next);
 			++this->current_index;
+			
 			return true;
 		}
 		this->game_over = true;

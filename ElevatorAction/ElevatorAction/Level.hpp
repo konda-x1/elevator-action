@@ -29,6 +29,7 @@ class Level : public Usable
 	void generate_missing_platforms();
 	void insert_document_doors();
 	Player *spawn(Player *player = nullptr);
+	void add_exit();
 public:
 	LevelManager *manager = nullptr;
 	int width;
@@ -45,6 +46,7 @@ public:
 	void add_xy(SingleFloorLevelObject *sflo);
 	void set_player(Player *player = nullptr);
 	void check_usable() override;
+	void transition_to(Level *level);
 	void process(float delta);
 	void render(float delta);
 	void build();
