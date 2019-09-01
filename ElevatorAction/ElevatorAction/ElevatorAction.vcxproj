@@ -167,7 +167,6 @@
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerHitbox.hpp" />
     <ClInclude Include="PlayerSpawnPoint.hpp" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="SingleFloorLevelObject.hpp" />
     <ClInclude Include="Usable.hpp" />
     <ClInclude Include="UserInput.hpp" />
@@ -179,9 +178,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="glut\glut32.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="ElevatorAction.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
