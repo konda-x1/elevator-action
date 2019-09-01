@@ -134,6 +134,13 @@
     <ClCompile Include="ElevatorHitbox.cpp" />
     <ClCompile Include="EnemyDoor.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="GameStateExit.cpp" />
+    <ClCompile Include="GameStateGameOver.cpp" />
+    <ClCompile Include="GameStateInGame.cpp" />
+    <ClCompile Include="GameStateMainMenu.cpp" />
+    <ClCompile Include="GameStates.cpp" />
+    <ClCompile Include="GameStateScoreboard.cpp" />
     <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelManager.cpp" />
@@ -157,6 +164,13 @@
     <ClInclude Include="ElevatorHitbox.hpp" />
     <ClInclude Include="EnemyDoor.hpp" />
     <ClInclude Include="Game.hpp" />
+    <ClInclude Include="GameState.hpp" />
+    <ClInclude Include="GameStateExit.hpp" />
+    <ClInclude Include="GameStateGameOver.hpp" />
+    <ClInclude Include="GameStateInGame.hpp" />
+    <ClInclude Include="GameStateMainMenu.hpp" />
+    <ClInclude Include="GameStates.hpp" />
+    <ClInclude Include="GameStateScoreboard.hpp" />
     <ClInclude Include="glut\glut.h" />
     <ClInclude Include="AbstractHitbox.hpp" />
     <ClInclude Include="Hitbox.hpp" />

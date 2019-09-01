@@ -1,6 +1,6 @@
 #include <exception>
 #include "LevelManager.hpp"
-
+#include "Game.hpp"
 
 Level * LevelManager::current()
 {
@@ -9,7 +9,7 @@ Level * LevelManager::current()
 	return nullptr;
 }
 
-LevelManager::LevelManager()
+LevelManager::LevelManager(Game *game) : game(game)
 {
 }
 
@@ -26,7 +26,7 @@ void LevelManager::add(Level *level)
 
 bool LevelManager::go2next()
 {
-	if (!this->is_game_over()) {
+	if (this->game->gamestate->state == GameState::IN_GAME) {
 		if ((unsigned)this->current_index < this->levels.size() - 1) {
 			Level *current = this->levels.at(current_index);
 			Level *next = this->levels.at(current_index + 1);
@@ -35,14 +35,9 @@ bool LevelManager::go2next()
 			
 			return true;
 		}
-		this->game_over = true;
+		this->game->game_over();
 	}
 	return false;
-}
-
-bool LevelManager::is_game_over() const
-{
-	return this->game_over;
 }
 
 void LevelManager::process(float delta)
