@@ -20,6 +20,7 @@ public:
 	Door(int x, int y, float r, float g, float b);
 	~Door();
 
+	void opendoor();
 	virtual void render_background();
 	virtual void render_doorknob(float right);
 	virtual void render_closed();

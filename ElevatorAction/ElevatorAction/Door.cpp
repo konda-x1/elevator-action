@@ -23,6 +23,13 @@ Door::~Door()
 {
 }
 
+void Door::opendoor()
+{
+	if (!this->open) {
+		this->open = true;
+	}
+}
+
 void Door::render_background()
 {
 	this->render_hitboxes(0.0f, 0.0f, 0.0f, 0.0f);
