@@ -1,3 +1,4 @@
+#include <iostream>
 #include <assert.h>
 #include <cmath>
 #include <stdexcept>
@@ -151,7 +152,9 @@ void Elevator::process(float delta, Player *player)
 		float deltafy = sign * this->vspeed * delta;
 		if (sign > 0.0f && player->hitbox->collides(this->hitbox_bottom) || player->hitbox->collides(this->hitbox_top)) {
 			float dpy = -player->fy;
+			this->hitbox_top->solid = false;
 			player->level->move_player(0.0f, deltafy);
+			this->hitbox_top->solid = true;
 			dpy += player->fy;
 			this->fy += dpy;
 		}
