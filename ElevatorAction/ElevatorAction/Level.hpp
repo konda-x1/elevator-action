@@ -37,6 +37,7 @@ public:
 	int width;
 	int height;
 	int document_doors;
+	int document_doors_opened = 0;
 
 	Level(int width, int height, int document_doors, Player *player = nullptr);
 	~Level();

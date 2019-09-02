@@ -18,7 +18,8 @@ public:
 	float r;
 	float g;
 	float b;
-	Door(int x, int y, float r, float g, float b);
+	bool player_can_open;
+	Door(int x, int y, float r, float g, float b, bool player_can_open);
 	~Door();
 
 	void opendoor();

@@ -1,12 +1,14 @@
 #pragma once
 #include "Door.hpp"
+#include "Player.hpp"
 class DocumentDoor :
 	public Door
 {
+	bool obtained = false;
 public:
 	DocumentDoor(int x, int y);
 	~DocumentDoor();
 
-	void process(float delta, Player *player) override;
+	void activate(Player *player) override;
 };
 

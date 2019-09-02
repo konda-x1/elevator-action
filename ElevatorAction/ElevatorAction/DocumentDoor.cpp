@@ -2,7 +2,7 @@
 
 
 
-DocumentDoor::DocumentDoor(int x, int y) : Door(x, y, 0.8f, 0.0f, 0.0f)
+DocumentDoor::DocumentDoor(int x, int y) : Door(x, y, 0.8f, 0.0f, 0.0f, true)
 {
 }
 
@@ -11,7 +11,13 @@ DocumentDoor::~DocumentDoor()
 {
 }
 
-void DocumentDoor::process(float delta, Player *player)
+void DocumentDoor::activate(Player * player)
 {
-	Door::process(delta, player); // Process elapsed time if door is open
+	if (!this->obtained) {
+		++player->level->document_doors_opened;
+		this->r = 1.0f;
+		this->g = 1.0f;
+		this->b = 1.0f;
+		this->obtained = true;
+	}
 }

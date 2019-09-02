@@ -3,6 +3,7 @@
 #include "Player.hpp"
 #include "util.hpp"
 #include "CollisionHelper.hpp"
+#include "Door.hpp"
 
 
 Player::Player()
@@ -42,6 +43,11 @@ bool Player::inside_elevator()
 	return this->elevator != nullptr;
 }
 
+bool Player::near_door()
+{
+	return this->door != nullptr;
+}
+
 void Player::check_usable()
 {
 	if (this->level == nullptr)
@@ -69,6 +75,12 @@ std::pair<float, float> Player::process_player_commands()
 	}
 	else if (this->input->down && this->inside_elevator()) {
 		this->elevator->move_down();
+	}
+
+	if (this->input->use) {
+		if (this->near_door()) {
+			this->door->opendoor();
+		}
 	}
 
 	//std::cout << this->input->right << std::endl;

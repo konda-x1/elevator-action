@@ -6,6 +6,7 @@
 class Level;
 class PlayerHitbox;
 class Elevator;
+class Door;
 class Player : public Usable
 {
 	std::pair<float, float> process_player_commands();
@@ -24,6 +25,7 @@ public:
 	PlayerHitbox *hitbox = nullptr;
 	UserInput *input = nullptr;
 	Elevator *elevator = nullptr;
+	Door *door = nullptr;
 
 	Player();
 	Player(Level *level, float fx, float fy);
@@ -33,6 +35,7 @@ public:
 	float dfy(float delta);
 	float current_height();
 	bool inside_elevator();
+	bool near_door();
 	void check_usable() override;
 	void process(float delta);
 	void render(float delta);

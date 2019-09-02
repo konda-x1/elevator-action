@@ -2,13 +2,14 @@
 #include "glut/glut.h"
 #include "util.hpp"
 #include "Door.hpp"
+#include "Player.hpp"
 
 const float Door::WIDTH = 0.35f;
 const float Door::HEIGHT = 0.8f;
 const float Door::WINDOW_FRAME_WIDTH = 0.05f;
 const float Door::KNOB_WIDTH = 0.05f;
 
-Door::Door(int x, int y, float r, float g, float b): SingleFloorLevelObject(x, y), r(r), g(g), b(b)
+Door::Door(int x, int y, float r, float g, float b, bool player_can_open): SingleFloorLevelObject(x, y), r(r), g(g), b(b), player_can_open(player_can_open)
 {
 	float x1 = to_x1(x, y, Door::WIDTH, Door::HEIGHT);
 	float y1 = to_y1(x, y, Door::WIDTH, Door::HEIGHT);
@@ -157,6 +158,14 @@ void Door::render(float delta)
 
 void Door::process(float delta, Player *player)
 {
+	if (this->player_can_open) {
+		if (player->hitbox->collides(this->hitbox)) {
+			player->door = this;
+		}
+		else if (player->door == this) {
+			player->door = nullptr;
+		}
+	}
 	if (this->open)
 		this->open_elapsed += delta;
 	if (this->open_elapsed >= 1.0f) {
