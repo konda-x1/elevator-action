@@ -32,6 +32,7 @@ void Game::keyboard_press(unsigned char key, int x, int y)
 	case 'e':
 	case ' ':
 		this->input.use = true;
+		break;
 	}
 }
 
@@ -53,6 +54,7 @@ void Game::keyboard_release(unsigned char key, int x, int y)
 	case 'e':
 	case ' ':
 		this->input.use = false;
+		break;
 	}
 }
 
