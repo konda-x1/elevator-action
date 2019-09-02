@@ -43,7 +43,7 @@ void Player::check_usable()
 		throw std::exception("Level is null");
 }
 
-std::pair<float, float> Player::process_movement_commands()
+std::pair<float, float> Player::process_player_commands()
 {
 	this->input = &this->level->manager->game->input;
 	float dirx = 0.0f, diry = 0.0f;
@@ -78,7 +78,7 @@ void Player::process(float delta)
 
 	this->elapse_jump(delta);
 
-	std::pair<float, float> dirxy = this->process_movement_commands();
+	std::pair<float, float> dirxy = this->process_player_commands();
 	float dirx = dirxy.first;
 	float diry = dirxy.second;
 

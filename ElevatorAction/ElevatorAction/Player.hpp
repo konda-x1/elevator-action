@@ -7,7 +7,7 @@ class Level;
 class PlayerHitbox;
 class Player : public Usable
 {
-	std::pair<float, float> process_movement_commands();
+	std::pair<float, float> process_player_commands();
 	void elapse_jump(float delta);
 public:
 	float fx, fy; // Coordinates of the lower left point of the player
