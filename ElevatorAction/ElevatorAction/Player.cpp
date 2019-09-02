@@ -32,9 +32,14 @@ float Player::dfy(float delta)
 
 float Player::current_height()
 {
-	if (this->input->down)
+	if (this->input->down && !this->inside_elevator())
 		return this->height / 2.0f;
 	return this->height;
+}
+
+bool Player::inside_elevator()
+{
+	return this->elevator != nullptr;
 }
 
 void Player::check_usable()
@@ -55,8 +60,17 @@ std::pair<float, float> Player::process_player_commands()
 	}
 	if (this->input->up) {
 		//std::cout << "lele" << std::endl;
-		diry += 1.0f;
+		if (this->inside_elevator()) {
+			this->elevator->move_up();
+		}
+		else {
+			diry += 1.0f;
+		}
 	}
+	else if (this->input->down && this->inside_elevator()) {
+		this->elevator->move_down();
+	}
+
 	//std::cout << this->input->right << std::endl;
 	return std::make_pair(dirx, diry);
 }

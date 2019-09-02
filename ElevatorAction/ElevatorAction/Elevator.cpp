@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include "Elevator.hpp"
 #include "ElevatorHitbox.hpp"
+#include "Player.hpp"
 #include "util.hpp"
 
 const float Elevator::R = 0.15f;
@@ -123,14 +124,32 @@ int Elevator::direction()
 
 void Elevator::process(float delta, Player *player)
 {
+	if (player->hitbox->collides(this->hitbox_inside)) {
+		player->elevator = this;
+	}
+	else if (player->elevator == this) {
+		player->elevator = nullptr;
+	}
 	if (this->is_moving()) {
 		float sign = (float)this->direction();
-		this->fy += sign * this->vspeed * delta;
+		float deltafy = sign * this->vspeed * delta;
+		if (sign > 0.0f && player->hitbox->collides(this->hitbox_bottom) || player->hitbox->collides(this->hitbox_top)) {
+			float dpy = -player->fy;
+			player->level->move_player(0.0f, deltafy);
+			dpy += player->fy;
+			this->fy += dpy;
+		}
+		else {
+			this->fy += deltafy;
+		}
 
 		// Correct the fy value to match the exact value of current_floor when elevator reaches its destination
 		if(sign * (this->fy - (float)this->target_floor) >= 0) {
 			this->fy = (float)this->target_floor;
 		}
+	}
+	else if (player->elevator == this) {
+		this->wait_time_elapsed = 0.0f;
 	}
 	else {
 		this->wait_time_elapsed += delta;
