@@ -1,5 +1,5 @@
 #include <utility>
-#include <exception>
+#include <stdexcept>
 #include <iostream>
 #include "Level.hpp"
 #include "util.hpp"
@@ -63,6 +63,9 @@ void Level::generate_missing_platforms()
 			std::pair<int, int> xy = std::make_pair(x, y);
 			if (!this->platform_occupied.count(xy) && !this->elevator_occupied.count(xy)) { // Not occupied by either a platform or an elevator
 				this->add_platform(x, y);
+				//if (x == this->spawns.front()->x && y == this->spawns.front()->y) {
+				//	this->hitboxes.push_back(this->objects.back()->hitboxes.front());
+				//}
 			}
 		}
 	}
@@ -174,9 +177,12 @@ void Level::set_player(Player * player)
 
 void Level::move_player(float dx, float dy)
 {
-	std::pair<float, float>dxdy = CollisionHelper::move_and_collide(this->player->hitbox, dx, dy, this->hitboxes);
+	//std::cout <<  dx << " dp " << dy << std::endl;
+	std::pair<float, float>dxdy = CollisionHelper::move_and_slide(this->player->hitbox, dx, dy, this->hitboxes);
+	//std::cout << dxdy.first << " ddp " << dxdy.second << std::endl;
 	player->fx += dxdy.first;
 	player->fy += dxdy.second;
+	//std::cout << player->fx << " p " << player->fy << std::endl;
 }
 
 void Level::check_usable()

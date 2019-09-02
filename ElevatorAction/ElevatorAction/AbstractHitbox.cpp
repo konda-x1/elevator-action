@@ -1,6 +1,7 @@
 #include "AbstractHitbox.hpp"
 #include <algorithm>
 #include "glut/glut.h"
+#include "util.hpp"
 
 
 AbstractHitbox::AbstractHitbox(bool solid) : solid(solid)
@@ -34,16 +35,14 @@ float AbstractHitbox::bottom() const
 
 bool AbstractHitbox::collides(AbstractHitbox *h)
 {
-	bool horizontal = this->left() >= h->left() && this->left() <= h->right() || this->right() >= h->left() && this->right() <= h->right();
-	bool vertical = this->bottom() >= h->bottom() && this->bottom() <= h->top() || this->top() >= h->bottom() && this->top() <= h->top();
-	return horizontal && vertical;
+	return fle(this->left(), h->right()) && fge(this->right(), h->left()) &&
+		fge(this->top(), h->bottom()) && fle(this->bottom(), h->top());
 }
 
 bool AbstractHitbox::intersects(AbstractHitbox *h)
 {
-	bool horizontal = this->left() > h->left() && this->left() < h->right() || this->right() > h->left() && this->right() < h->right();
-	bool vertical = this->bottom() > h->bottom() && this->bottom() < h->top() || this->top() > h->bottom() && this->top() < h->top();
-	return horizontal && vertical;
+	return flt(this->left(), h->right()) && fgt(this->right(), h->left()) &&
+		fgt(this->top(), h->bottom()) && flt(this->bottom(), h->top());
 }
 
 void AbstractHitbox::render(float delta, float r, float g, float b)

@@ -1,6 +1,6 @@
 #include "ElevatorHitbox.hpp"
 #include "Platform.hpp"
-#include <exception>
+#include <stdexcept>
 
 
 ElevatorHitbox::ElevatorHitbox(Elevator *elevator, float offset_y, float height, bool solid) : AbstractHitbox(solid), elevator(elevator), offset_y(offset_y), height(height)

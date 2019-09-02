@@ -5,12 +5,12 @@
 class Game;
 class LevelManager
 {
-	Game *game;
 	std::vector<Level *> levels = std::vector<Level *>();
 	int current_index = 0;
 
 	Level *current();
 public:
+	Game *game;
 	LevelManager(Game *game);
 	~LevelManager();
 

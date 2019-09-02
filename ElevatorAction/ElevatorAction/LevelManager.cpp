@@ -1,4 +1,4 @@
-#include <exception>
+#include <stdexcept>
 #include "LevelManager.hpp"
 #include "Game.hpp"
 

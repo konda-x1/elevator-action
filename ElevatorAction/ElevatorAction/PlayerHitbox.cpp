@@ -17,7 +17,7 @@ float PlayerHitbox::x1() const
 
 float PlayerHitbox::y1() const
 {
-	return this->player->fy + this->player->height;
+	return this->player->fy + this->player->current_height();
 }
 
 float PlayerHitbox::x2() const

@@ -17,8 +17,10 @@ public:
 	Game();
 	~Game();
 
-	void keyboard_input(unsigned char key, int x, int y);
-	void specialkey_input(int key, int x, int y);
+	void keyboard_press(unsigned char key, int x, int y);
+	void keyboard_release(unsigned char key, int x, int y);
+	void specialkey_press(int key, int x, int y);
+	void specialkey_release(int key, int x, int y);
 	void set_gamestate(GameState *state);
 	void game_over();
 	void process(float delta);

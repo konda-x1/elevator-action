@@ -1,6 +1,6 @@
 #include <assert.h>
 #include <cmath>
-#include <exception>
+#include <stdexcept>
 #include "Elevator.hpp"
 #include "ElevatorHitbox.hpp"
 #include "util.hpp"
