@@ -122,7 +122,7 @@ int Elevator::direction()
 		return this->passive_direction;
 }
 
-void Elevator::process(float delta, Player *player)
+void Elevator::process_player_inside(Player * player)
 {
 	if (player->hitbox->collides(this->hitbox_inside)) {
 		player->elevator = this;
@@ -130,6 +130,22 @@ void Elevator::process(float delta, Player *player)
 	else if (player->elevator == this) {
 		player->elevator = nullptr;
 	}
+}
+
+void Elevator::process_player_deathbox(Player * player)
+{
+	for (ElevatorDeathbox *db : this->hitboxes_death) {
+		if (player->hitbox->collides(db)) {
+			player->die();
+		}
+	}
+}
+
+void Elevator::process(float delta, Player *player)
+{
+	this->process_player_deathbox(player);
+	this->process_player_inside(player);
+
 	if (this->is_moving()) {
 		float sign = (float)this->direction();
 		float deltafy = sign * this->vspeed * delta;

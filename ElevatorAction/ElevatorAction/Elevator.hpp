@@ -39,6 +39,8 @@ public:
 	bool move_down();
 	bool move_generic(int direction);
 	int direction();
+	void process_player_inside(Player *player);
+	void process_player_deathbox(Player *player);
 	void process(float delta, Player *player) override;
 	void render(float delta) override;
 };
