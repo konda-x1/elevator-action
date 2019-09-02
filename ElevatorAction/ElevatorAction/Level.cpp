@@ -7,6 +7,8 @@
 #include "EnemyDoor.hpp"
 #include "Platform.hpp"
 #include "CollisionHelper.hpp"
+#include "LevelManager.hpp"
+#include "Game.hpp"
 
 #include "glut/glut.h"
 
@@ -92,6 +94,11 @@ Player *Level::spawn(Player * player)
 		throw std::exception("No spawn points for Player in Level");
 	int rand_index = randint(0, this->spawns.size() - 1);
 	return this->spawns.at(rand_index)->spawn(this, player);
+}
+
+void Level::game_over()
+{
+	this->manager->game->game_over();
 }
 
 void Level::add_exit()
@@ -191,6 +198,11 @@ void Level::check_usable()
 		throw std::exception("Level hasn't been built");
 }
 
+void Level::kill_player()
+{
+	this->player_death = true;
+}
+
 void Level::transition_to(Level * level)
 {
 	level->set_player(this->player);
@@ -199,9 +211,34 @@ void Level::transition_to(Level * level)
 void Level::process(float delta)
 {
 	this->check_usable();
-	this->player->process(delta);
-	for (LevelObject *object : this->objects)
-		object->process(delta, this->player);
+	if (this->player_death) {
+		if (this->player_death_elapsed < 0.33f) {
+			this->player_originalw = this->player->width;
+			this->player_originalh = this->player->height;
+		}
+		else if(this->player_death_elapsed < this->player_death_duration - 0.66f) {
+			this->player->width -= player_originalw * delta / (this->player_death_duration - 0.33f - 0.66f);
+			this->player->height -= player_originalh * delta / (this->player_death_duration - 0.33f - 0.66f);
+		}
+		this->player_death_elapsed += delta;
+		if (this->player_death_elapsed > this->player_death_duration) {
+			this->player->width = this->player_originalw;
+			this->player->height = this->player_originalh;
+			this->player_death_elapsed = 0.0f;
+			this->player_death = false;
+			if (this->player->lives <= 0) {
+				this->game_over();
+			}
+			else {
+				this->spawn(this->player);
+			}
+		}
+	}
+	else {
+		this->player->process(delta);
+		for (LevelObject *object : this->objects)
+			object->process(delta, this->player);
+	}
 }
 
 void Level::render(float delta)

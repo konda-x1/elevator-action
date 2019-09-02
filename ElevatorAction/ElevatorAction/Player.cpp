@@ -48,6 +48,12 @@ bool Player::near_door()
 	return this->door != nullptr;
 }
 
+void Player::die()
+{
+	--this->lives;
+	this->level->kill_player();
+}
+
 void Player::check_usable()
 {
 	if (this->level == nullptr)

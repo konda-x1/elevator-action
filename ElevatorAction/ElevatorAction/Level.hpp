@@ -20,6 +20,11 @@ class Level : public Usable
 	std::set<std::pair<int, int>> platform_occupied = std::set<std::pair<int, int>>();
 	Player *player;
 	bool built = false;
+	bool player_death = false;
+	float player_death_duration = 2.0f;
+	float player_death_elapsed = 0.0f;
+	float player_originalw;
+	float player_originalh;
 
 	int remaining_free();
 	void generate_missing();
@@ -29,6 +34,7 @@ class Level : public Usable
 	void generate_missing_platforms();
 	void insert_document_doors();
 	Player *spawn(Player *player = nullptr);
+	void game_over();
 	void add_exit();
 	void add_hitboxes();
 public:
@@ -50,6 +56,7 @@ public:
 	void set_player(Player *player = nullptr);
 	void move_player(float dx, float dy);
 	void check_usable() override;
+	void kill_player();
 	void transition_to(Level *level);
 	void process(float delta);
 	void render(float delta);

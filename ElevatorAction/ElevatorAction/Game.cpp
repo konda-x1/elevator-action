@@ -94,8 +94,9 @@ void Game::specialkey_release(int key, int x, int y)
 
 void Game::set_gamestate(GameState * state)
 {
-	delete this->gamestate;
-	this->gamestate;
+	GameState *oldstate = this->gamestate;
+	this->gamestate = state;
+	delete oldstate;
 }
 
 void Game::game_over()

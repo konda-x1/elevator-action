@@ -1,7 +1,7 @@
 #include <iostream>
 #include "GameStateInGame.hpp"
 
-GameStateInGame::GameStateInGame(Game *game) : GameState(game, GAME_OVER)
+GameStateInGame::GameStateInGame(Game *game) : GameState(game, IN_GAME)
 {
 }
 

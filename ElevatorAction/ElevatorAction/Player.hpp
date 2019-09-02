@@ -12,6 +12,7 @@ class Player : public Usable
 	std::pair<float, float> process_player_commands();
 	void elapse_jump(float delta);
 public:
+	int lives = 2;
 	float fx, fy; // Coordinates of the lower left point of the player
 	float width = 0.2f, height = 0.5f;
 	float velx = 0.0f, vely = 0.0f;
@@ -36,6 +37,7 @@ public:
 	float current_height();
 	bool inside_elevator();
 	bool near_door();
+	void die();
 	void check_usable() override;
 	void process(float delta);
 	void render(float delta);
