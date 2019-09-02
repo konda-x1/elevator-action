@@ -6,6 +6,7 @@ class Door :
 	public SingleFloorLevelObject
 {
 	bool open = false;
+	bool activated = false;
 	float open_elapsed = 0.0f;
 public:
 	static const float WIDTH;
@@ -21,6 +22,7 @@ public:
 	~Door();
 
 	void opendoor();
+	virtual void activate(Player *player);
 	virtual void render_background();
 	virtual void render_doorknob(float right);
 	virtual void render_closed();

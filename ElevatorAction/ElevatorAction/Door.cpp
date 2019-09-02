@@ -30,6 +30,10 @@ void Door::opendoor()
 	}
 }
 
+void Door::activate(Player * player)
+{
+}
+
 void Door::render_background()
 {
 	this->render_hitboxes(0.0f, 0.0f, 0.0f, 0.0f);
@@ -158,5 +162,10 @@ void Door::process(float delta, Player *player)
 	if (this->open_elapsed >= 1.0f) {
 		this->open_elapsed = 0.0f;
 		this->open = false;
+		this->activated = false;
+	}
+	else if (this->open_elapsed >= 0.5f && !this->activated) {
+		this->activate(player);
+		this->activated = true;
 	}
 }
