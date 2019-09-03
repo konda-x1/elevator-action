@@ -12,6 +12,7 @@
 class PlayerSpawnPoint;
 class LevelManager;
 class Bullet;
+class Enemy;
 class Level : public Usable
 {
 	std::vector<LevelObject *> objects = std::vector<LevelObject *>();
@@ -43,6 +44,7 @@ public:
 	Player *player;
 	std::vector<AbstractHitbox *> hitboxes = std::vector<AbstractHitbox *>();
 	std::vector<Bullet *> bullets = std::vector<Bullet *>();
+	std::vector<Enemy *> enemies = std::vector<Enemy *>();
 	int width;
 	int height;
 	int document_doors;
@@ -63,6 +65,8 @@ public:
 	void exit();
 	void spawn_bullet(Bullet *bullet);
 	void despawn_bullet(Bullet *bullet);
+	void spawn_enemy(Enemy *enemy);
+	void despawn_enemy(Enemy *enemy);
 	void transition_to(Level *level);
 	void process(float delta);
 	void render(float delta);

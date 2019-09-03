@@ -12,6 +12,7 @@
 #include "Game.hpp"
 #include "ElevatorExit.hpp"
 #include "Bullet.hpp"
+#include "Enemy.hpp"
 #include "Wall.hpp"
 
 #include "glut/glut.h"
@@ -233,6 +234,20 @@ void Level::despawn_bullet(Bullet * bullet)
 	if (it != this->bullets.end()) {
 		//delete *it;
 		this->bullets.erase(it);
+	}
+}
+
+void Level::spawn_enemy(Enemy * enemy)
+{
+	this->enemies.push_back(enemy);
+}
+
+void Level::despawn_enemy(Enemy * enemy)
+{
+	auto it = std::find(this->enemies.begin(), this->enemies.end(), enemy);
+	if (it != this->enemies.end()) {
+		//delete *enemy;
+		this->enemies.erase(it);
 	}
 }
 

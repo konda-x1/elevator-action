@@ -53,7 +53,7 @@ void Enemy::fire()
 
 void Enemy::die()
 {
-	//this->level->despawn_enemy(this);
+	this->level->despawn_enemy(this);
 }
 
 void Enemy::check_usable()
