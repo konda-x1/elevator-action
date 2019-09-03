@@ -158,6 +158,7 @@
     <ClCompile Include="Usable.cpp" />
     <ClCompile Include="UserInput.cpp" />
     <ClCompile Include="util.cpp" />
+    <ClCompile Include="Wall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bullet.hpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="UserInput.hpp" />
     <ClInclude Include="util.hpp" />
     <ClInclude Include="main.hpp" />
+    <ClInclude Include="Wall.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="glut\glut32.lib" />

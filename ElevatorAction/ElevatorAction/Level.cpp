@@ -12,6 +12,7 @@
 #include "Game.hpp"
 #include "ElevatorExit.hpp"
 #include "Bullet.hpp"
+#include "Wall.hpp"
 
 #include "glut/glut.h"
 
@@ -23,9 +24,18 @@ int Level::remaining_free()
 
 void Level::generate_missing()
 {
+	this->generate_walls();
 	this->generate_missing_spawnpoint();
 	this->generate_missing_doors();
 	this->generate_missing_platforms();
+}
+
+void Level::generate_walls()
+{
+	for (int y = 1; y <= this->height; y++) {
+		this->objects.push_back(new Wall(1, y));
+		this->objects.push_back(new Wall(this->width+1, y));
+	}
 }
 
 void Level::generate_missing_spawnpoint()

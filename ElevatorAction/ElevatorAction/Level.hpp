@@ -28,6 +28,7 @@ class Level : public Usable
 
 	int remaining_free();
 	void generate_missing();
+	void generate_walls();
 	void generate_missing_spawnpoint();
 	void generate_roof();
 	void generate_missing_doors();
