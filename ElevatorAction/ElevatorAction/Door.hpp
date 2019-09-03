@@ -5,9 +5,10 @@
 class Door :
 	public SingleFloorLevelObject
 {
-	bool open = false;
 	bool activated = false;
 	float open_elapsed = 0.0f;
+protected:
+	bool open = false;
 public:
 	static const float WIDTH;
 	static const float HEIGHT;
@@ -29,6 +30,7 @@ public:
 	virtual void render_closed();
 	virtual void render_halfopen();
 	virtual void render_open();
+	virtual void on_closed();
 	void render(float delta) override;
 	void process(float delta, Player *player) override;
 };

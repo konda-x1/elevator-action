@@ -290,6 +290,9 @@ void Level::process(float delta)
 		for (Bullet *b : this->bullets) {
 			b->process(delta);
 		}
+		for (Enemy *e : this->enemies) {
+			e->process(delta);
+		}
 	}
 }
 
@@ -299,10 +302,14 @@ void Level::render(float delta)
 	glLoadIdentity();
 	glTranslatef(-1.0f, -1.0f, 0.0f);
 	glScalef(2.0f / (float)this->width, 2.0f / (float)this->width, 1.0f);
-	for (LevelObject *object : this->objects)
+	for (LevelObject *object : this->objects) {
 		object->render(delta);
+	}
 	for (Bullet *b : this->bullets) {
 		b->render(delta);
+	}
+	for (Enemy *e : this->enemies) {
+		e->render(delta);
 	}
 	this->player->render(delta);
 }

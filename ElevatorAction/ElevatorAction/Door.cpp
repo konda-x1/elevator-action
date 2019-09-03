@@ -144,6 +144,10 @@ void Door::render_open()
 	this->render_doorknob(this->hitbox->left());
 }
 
+void Door::on_closed()
+{
+}
+
 void Door::render(float delta)
 {
 	if (!this->open)
@@ -172,8 +176,9 @@ void Door::process(float delta, Player *player)
 		this->open_elapsed = 0.0f;
 		this->open = false;
 		this->activated = false;
+		this->on_closed();
 	}
-	else if (this->open_elapsed >= 0.5f && !this->activated) {
+	else if (this->open_elapsed >= 0.15f && !this->activated) {
 		this->activate(player);
 		this->activated = true;
 	}

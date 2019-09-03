@@ -96,6 +96,6 @@ void Enemy::render(float delta)
 {
 	this->check_usable();
 
-	this->hitbox->render(delta, 0.0f, 0.8f, 0.0f);
+	this->hitbox->render(delta, 0.8f, 0.0f, 0.0f);
 	this->render_gun();
 }

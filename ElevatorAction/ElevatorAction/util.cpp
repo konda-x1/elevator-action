@@ -9,6 +9,11 @@ int randint(int min_val, int max_val)
 	return rand() % (max_val - min_val + 1) + min_val;
 }
 
+float randfloat(float min_val, float max_val)
+{
+	return rand() / (float)RAND_MAX * (max_val - min_val) + min_val;
+}
+
 float to_x1(int x, int y, float width, float height)
 {
 	return (float)x - 0.5f - width / 2.0f;
