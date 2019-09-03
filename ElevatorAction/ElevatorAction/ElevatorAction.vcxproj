@@ -133,6 +133,7 @@
     <ClCompile Include="ElevatorDeathbox.cpp" />
     <ClCompile Include="ElevatorHitbox.cpp" />
     <ClCompile Include="EnemyDoor.cpp" />
+    <ClCompile Include="ElevatorExit.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="GameStateExit.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="ElevatorDeathbox.hpp" />
     <ClInclude Include="ElevatorHitbox.hpp" />
     <ClInclude Include="EnemyDoor.hpp" />
+    <ClInclude Include="ElevatorExit.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameStateExit.hpp" />

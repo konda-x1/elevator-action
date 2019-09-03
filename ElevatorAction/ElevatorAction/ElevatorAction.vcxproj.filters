@@ -102,6 +102,9 @@
     <ClCompile Include="GameStates.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ElevatorExit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.hpp">
@@ -192,6 +195,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameStates.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ElevatorExit.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

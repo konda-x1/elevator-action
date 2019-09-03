@@ -9,6 +9,7 @@
 #include "CollisionHelper.hpp"
 #include "LevelManager.hpp"
 #include "Game.hpp"
+#include "ElevatorExit.hpp"
 
 #include "glut/glut.h"
 
@@ -103,7 +104,8 @@ void Level::game_over()
 
 void Level::add_exit()
 {
-	this->add_elevator(new Elevator(1, 0, 1));
+	//this->add_elevator(new Elevator(1, 0, 1));
+	this->add_elevator(new ElevatorExit(this));
 }
 
 void Level::add_hitboxes()
@@ -201,6 +203,11 @@ void Level::check_usable()
 void Level::kill_player()
 {
 	this->player_death = true;
+}
+
+void Level::exit()
+{
+	this->manager->go2next();
 }
 
 void Level::transition_to(Level * level)

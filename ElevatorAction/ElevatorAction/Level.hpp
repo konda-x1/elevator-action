@@ -57,6 +57,7 @@ public:
 	void move_player(float dx, float dy);
 	void check_usable() override;
 	void kill_player();
+	void exit();
 	void transition_to(Level *level);
 	void process(float delta);
 	void render(float delta);
