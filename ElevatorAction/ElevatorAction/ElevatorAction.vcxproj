@@ -125,6 +125,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletHitbox.cpp" />
     <ClCompile Include="CollisionHelper.cpp" />
     <ClCompile Include="DocumentDoor.cpp" />
     <ClCompile Include="Door.cpp" />
@@ -149,6 +151,7 @@
     <ClCompile Include="LevelObject.cpp" />
     <ClCompile Include="Platform.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="PlayerHitbox.cpp" />
     <ClCompile Include="PlayerSpawnPoint.cpp" />
     <ClCompile Include="SingleFloorLevelObject.cpp" />
@@ -157,6 +160,8 @@
     <ClCompile Include="util.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.hpp" />
+    <ClInclude Include="BulletHitbox.hpp" />
     <ClInclude Include="CollisionHelper.hpp" />
     <ClInclude Include="DocumentDoor.hpp" />
     <ClInclude Include="Door.hpp" />
@@ -181,6 +186,7 @@
     <ClInclude Include="LevelObject.hpp" />
     <ClInclude Include="Platform.hpp" />
     <ClInclude Include="Player.hpp" />
+    <ClInclude Include="PlayerBullet.hpp" />
     <ClInclude Include="PlayerHitbox.hpp" />
     <ClInclude Include="PlayerSpawnPoint.hpp" />
     <ClInclude Include="SingleFloorLevelObject.hpp" />

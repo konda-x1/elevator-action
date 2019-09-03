@@ -11,6 +11,7 @@ class Player : public Usable
 {
 	std::pair<float, float> process_player_commands();
 	void elapse_jump(float delta);
+	void elapse_fire(float delta);
 public:
 	int lives = 2;
 	float fx, fy; // Coordinates of the lower left point of the player
@@ -20,8 +21,11 @@ public:
 	float jump_speed = 1.2f;
 	float jump_elapsed = 0.0f;
 	float jump_cooldown = 2.0f;
+	float fire_elapsed = 0.0f;
+	float fire_cooldown = 0.75f;
 	bool on_ground = false;
 	bool jumping = false;
+	bool firing = false;
 	enum Orientation {
 		LEFT = -1,
 		RIGHT = 1
@@ -44,6 +48,7 @@ public:
 	bool inside_elevator();
 	bool near_door();
 	bool crouching();
+	void fire();
 	void die();
 	void check_usable() override;
 	void process(float delta);

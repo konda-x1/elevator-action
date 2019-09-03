@@ -21,17 +21,17 @@ bool CollisionHelper::will_collide(AbstractHitbox * moving_hitbox, float dx, flo
 	return moved_hitbox.intersects(standing_hitbox);
 }
 
-AbstractHitbox * CollisionHelper::collides_with_solid(AbstractHitbox * moving_hitbox, float dx, float dy, std::vector<AbstractHitbox*> hitboxes)
+bool CollisionHelper::collides_with_solid(AbstractHitbox * moving_hitbox, float dx, float dy, std::vector<AbstractHitbox*> hitboxes)
 {
 	for (AbstractHitbox *h : hitboxes) {
 		if (!h->solid || moving_hitbox == h) {
 			continue;
 		}
 		if (will_collide(moving_hitbox, dx, dy, h)) {
-			return h;
+			return true;
 		}
 	}
-	return nullptr;
+	return false;
 }
 
 //std::pair<float, float> CollisionHelper::move_nointersect(AbstractHitbox * moving_hitbox, float dx, float dy, AbstractHitbox * standing_hitbox)

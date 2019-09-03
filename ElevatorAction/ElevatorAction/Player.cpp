@@ -5,7 +5,7 @@
 #include "util.hpp"
 #include "CollisionHelper.hpp"
 #include "Door.hpp"
-
+#include "PlayerBullet.hpp"
 
 Player::Player()
 {
@@ -64,6 +64,15 @@ bool Player::crouching()
 	return this->current_height() < this->height;
 }
 
+void Player::fire()
+{
+	if (!this->firing) {
+		std::cout << "Firing" << std::endl;
+		this->level->spawn_bullet(new PlayerBullet(this->level, (float)this->orientation * 2.0f));
+		this->firing = true;
+	}
+}
+
 void Player::die()
 {
 	--this->lives;
@@ -106,6 +115,9 @@ std::pair<float, float> Player::process_player_commands()
 		if (this->near_door()) {
 			this->door->opendoor();
 		}
+		else if (!this->crouching()) {
+			this->fire();
+		}
 	}
 
 	//std::cout << this->input->right << std::endl;
@@ -123,11 +135,23 @@ void Player::elapse_jump(float delta)
 	}
 }
 
+void Player::elapse_fire(float delta)
+{
+	if (this->firing) {
+		this->fire_elapsed += delta;
+		if (this->fire_elapsed > this->fire_cooldown) {
+			this->fire_elapsed = 0.0f;
+			this->firing = false;
+		}
+	}
+}
+
 void Player::process(float delta)
 {
 	this->check_usable();
 
 	this->elapse_jump(delta);
+	this->elapse_fire(delta);
 
 	std::pair<float, float> dirxy = this->process_player_commands();
 	float dirx = dirxy.first;
@@ -177,7 +201,7 @@ void Player::render_gun()
 		float x2 = this->gun_fx();
 		float y2 = middle_h - 0.04f * this->height;
 		//std::cout << x1 << " " << y1 << " " << x2 << " " << y2 << std::endl;
-		std::cout << this->orientation << std::endl;
+		//std::cout << this->orientation << std::endl;
 		glColor3f(0.55f, 0.27f, 0.075f); // Brown
 		glRectf(x1, y1, x2, y2);
 	}

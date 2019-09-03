@@ -1,6 +1,7 @@
 #include <utility>
 #include <stdexcept>
 #include <iostream>
+#include <algorithm>
 #include "Level.hpp"
 #include "util.hpp"
 #include "DocumentDoor.hpp"
@@ -10,6 +11,7 @@
 #include "LevelManager.hpp"
 #include "Game.hpp"
 #include "ElevatorExit.hpp"
+#include "Bullet.hpp"
 
 #include "glut/glut.h"
 
@@ -210,6 +212,20 @@ void Level::exit()
 	this->manager->go2next();
 }
 
+void Level::spawn_bullet(Bullet * bullet)
+{
+	this->bullets.push_back(bullet);
+}
+
+void Level::despawn_bullet(Bullet * bullet)
+{
+	auto it = std::find(this->bullets.begin(), this->bullets.end(), bullet);
+	if (it != this->bullets.end()) {
+		//delete *it;
+		this->bullets.erase(it);
+	}
+}
+
 void Level::transition_to(Level * level)
 {
 	level->set_player(this->player);
@@ -243,8 +259,12 @@ void Level::process(float delta)
 	}
 	else {
 		this->player->process(delta);
-		for (LevelObject *object : this->objects)
+		for (LevelObject *object : this->objects) {
 			object->process(delta, this->player);
+		}
+		for (Bullet *b : this->bullets) {
+			b->process(delta);
+		}
 	}
 }
 
@@ -256,6 +276,9 @@ void Level::render(float delta)
 	glScalef(2.0f / (float)this->width, 2.0f / (float)this->width, 1.0f);
 	for (LevelObject *object : this->objects)
 		object->render(delta);
+	for (Bullet *b : this->bullets) {
+		b->render(delta);
+	}
 	this->player->render(delta);
 }
 

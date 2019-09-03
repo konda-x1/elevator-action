@@ -11,6 +11,7 @@
 
 class PlayerSpawnPoint;
 class LevelManager;
+class Bullet;
 class Level : public Usable
 {
 	std::vector<LevelObject *> objects = std::vector<LevelObject *>();
@@ -18,7 +19,6 @@ class Level : public Usable
 	std::set<std::pair<int, int>> occupied = std::set<std::pair<int, int>>();
 	std::set<std::pair<int, int>> elevator_occupied = std::set<std::pair<int, int>>();
 	std::set<std::pair<int, int>> platform_occupied = std::set<std::pair<int, int>>();
-	Player *player;
 	bool built = false;
 	bool player_death = false;
 	float player_death_duration = 2.0f;
@@ -39,7 +39,9 @@ class Level : public Usable
 	void add_hitboxes();
 public:
 	LevelManager *manager = nullptr;
+	Player *player;
 	std::vector<AbstractHitbox *> hitboxes = std::vector<AbstractHitbox *>();
+	std::vector<Bullet *> bullets = std::vector<Bullet *>();
 	int width;
 	int height;
 	int document_doors;
@@ -58,6 +60,8 @@ public:
 	void check_usable() override;
 	void kill_player();
 	void exit();
+	void spawn_bullet(Bullet *bullet);
+	void despawn_bullet(Bullet *bullet);
 	void transition_to(Level *level);
 	void process(float delta);
 	void render(float delta);
