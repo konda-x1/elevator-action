@@ -1,4 +1,5 @@
 #include <iostream>
+#include "glut/glut.h"
 #include "Game.hpp"
 #include "Player.hpp"
 #include "util.hpp"
@@ -11,7 +12,7 @@ Player::Player()
 	this->hitbox = new PlayerHitbox(this);
 }
 
-Player::Player(Level *level, float fx, float fy): level(level), fx(fx), fy(fy)
+Player::Player(Level *level, float fx, float fy, Orientation orientation): level(level), fx(fx), fy(fy), orientation(orientation)
 {
 	Player();
 }
@@ -38,6 +39,16 @@ float Player::current_height()
 	return this->height;
 }
 
+float Player::gun_fx()
+{
+	return (this->hitbox->left() + this->hitbox->right()) / 2.0f + (float)this->orientation * this->width;
+}
+
+float Player::gun_fy()
+{
+	return this->fy + this->height * 0.75f;
+}
+
 bool Player::inside_elevator()
 {
 	return this->elevator != nullptr;
@@ -46,6 +57,11 @@ bool Player::inside_elevator()
 bool Player::near_door()
 {
 	return this->door != nullptr;
+}
+
+bool Player::crouching()
+{
+	return this->current_height() < this->height;
 }
 
 void Player::die()
@@ -64,10 +80,13 @@ std::pair<float, float> Player::process_player_commands()
 {
 	this->input = &this->level->manager->game->input;
 	float dirx = 0.0f, diry = 0.0f;
-	if (this->input->left)
+	if (this->input->left) {
 		dirx -= 1.0f;
+		this->orientation = LEFT;
+	}
 	if (this->input->right) {
 		dirx += 1.0f;
+		this->orientation = RIGHT;
 		//std::cout << "right" << std::endl;
 	}
 	if (this->input->up) {
@@ -149,9 +168,25 @@ void Player::process(float delta)
 	this->velx = 0.0f;
 }
 
+void Player::render_gun()
+{
+	if (!this->crouching()) {
+		float middle_h = this->gun_fy();
+		float x1 = (this->hitbox->left() + this->hitbox->right()) / 2.0f + (float)this->orientation * this->width / 2.0f;
+		float y1 = middle_h + 0.04f * this->height;
+		float x2 = this->gun_fx();
+		float y2 = middle_h - 0.04f * this->height;
+		//std::cout << x1 << " " << y1 << " " << x2 << " " << y2 << std::endl;
+		std::cout << this->orientation << std::endl;
+		glColor3f(0.55f, 0.27f, 0.075f); // Brown
+		glRectf(x1, y1, x2, y2);
+	}
+}
+
 void Player::render(float delta)
 {
 	this->check_usable();
 
 	this->hitbox->render(delta, 0.0f, 0.8f, 0.0f);
+	this->render_gun();
 }

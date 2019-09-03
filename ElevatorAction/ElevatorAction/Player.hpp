@@ -22,6 +22,10 @@ public:
 	float jump_cooldown = 2.0f;
 	bool on_ground = false;
 	bool jumping = false;
+	enum Orientation {
+		LEFT = -1,
+		RIGHT = 1
+	} orientation = RIGHT;
 	Level *level = nullptr;
 	PlayerHitbox *hitbox = nullptr;
 	UserInput *input = nullptr;
@@ -29,17 +33,21 @@ public:
 	Door *door = nullptr;
 
 	Player();
-	Player(Level *level, float fx, float fy);
+	Player(Level *level, float fx, float fy, Orientation orientation = Orientation::RIGHT);
 	~Player();
 
 	float dfx(float delta);
 	float dfy(float delta);
 	float current_height();
+	float gun_fx();
+	float gun_fy();
 	bool inside_elevator();
 	bool near_door();
+	bool crouching();
 	void die();
 	void check_usable() override;
 	void process(float delta);
+	void render_gun();
 	void render(float delta);
 };
 
