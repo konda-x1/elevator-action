@@ -308,13 +308,13 @@ void Level::render(float delta)
 	for (LevelObject *object : this->objects) {
 		object->render(delta);
 	}
-	for (Bullet *b : this->bullets) {
-		b->render(delta);
-	}
 	for (Enemy *e : this->enemies) {
 		e->render(delta);
 	}
 	this->player->render(delta);
+	for (Bullet *b : this->bullets) {
+		b->render(delta);
+	}
 }
 
 void Level::build()
