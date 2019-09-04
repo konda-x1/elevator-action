@@ -249,7 +249,7 @@ void Level::despawn_enemy(Enemy * enemy)
 {
 	auto it = std::find(this->enemies.begin(), this->enemies.end(), enemy);
 	if (it != this->enemies.end()) {
-		//delete *enemy;
+		//delete *it;
 		this->enemies.erase(it);
 	}
 }

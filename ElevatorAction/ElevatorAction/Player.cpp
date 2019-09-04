@@ -34,7 +34,7 @@ float Player::dfy(float delta)
 
 float Player::current_height()
 {
-	if (this->input->down && !this->inside_elevator())
+	if (this->input->down && !this->inside_elevator() && !this->dying)
 		return this->height / 2.0f;
 	return this->height;
 }
@@ -75,6 +75,7 @@ void Player::fire()
 
 void Player::die()
 {
+	this->dying = true;
 	--this->lives;
 	this->level->kill_player();
 }

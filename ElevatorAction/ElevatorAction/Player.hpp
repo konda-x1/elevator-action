@@ -26,6 +26,7 @@ public:
 	bool on_ground = false;
 	bool jumping = false;
 	bool firing = false;
+	bool dying = false;
 	enum Orientation {
 		LEFT = -1,
 		RIGHT = 1
