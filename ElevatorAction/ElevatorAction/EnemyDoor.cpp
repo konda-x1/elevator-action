@@ -3,7 +3,7 @@
 #include "util.hpp"
 #include "Enemy.hpp"
 
-EnemyDoor::EnemyDoor(int x, int y, float min_wait_time, float max_wait_time, int num_enemies) : Door(x, y, 0.0f, 0.0f, 0.8f, false), min_wait_time(min_wait_time), max_wait_time(max_wait_time), num_enemies(num_enemies)
+EnemyDoor::EnemyDoor(int x, int y, float min_wait_time, float max_wait_time, int min_enemies, int max_enemies) : Door(x, y, 0.0f, 0.0f, 0.8f, false), min_wait_time(min_wait_time), max_wait_time(max_wait_time), num_enemies(randint(min_enemies, max_enemies))
 {
 }
 
@@ -18,6 +18,7 @@ void EnemyDoor::spawn_enemy(Player *player)
 	enemy->level = player->level;
 	enemy->fx = (float)this->x - 0.5f - enemy->width / 2.0f;
 	enemy->fy = (float)this->y - 1.0f + Platform::THICKNESS;
+	enemy->face_player();
 	player->level->spawn_enemy(enemy);
 }
 

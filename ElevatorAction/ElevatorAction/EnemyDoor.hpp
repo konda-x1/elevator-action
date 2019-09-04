@@ -1,5 +1,6 @@
 #pragma once
 #include "Door.hpp"
+
 class EnemyDoor :
 	public Door
 {
@@ -12,7 +13,7 @@ public:
 	int num_spawned = 0;
 	bool spawning = false;
 
-	EnemyDoor(int x, int y, float min_wait_time = 2.0f, float max_wait_time = 2.0f, int num_enemies = 5);
+	EnemyDoor(int x, int y, float min_wait_time = 0.0f, float max_wait_time = 4.0f, int min_enemies = 1, int max_enemies = 2);
 	~EnemyDoor();
 
 	void spawn_enemy(Player *player);
