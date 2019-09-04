@@ -14,6 +14,7 @@ class Player : public Usable
 	void elapse_fire(float delta);
 public:
 	int lives = 2;
+	int score = 0;
 	float fx, fy; // Coordinates of the lower left point of the player
 	float width = 0.2f, height = 0.5f;
 	float velx = 0.0f, vely = 0.0f;

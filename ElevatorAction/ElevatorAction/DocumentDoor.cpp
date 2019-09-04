@@ -15,6 +15,7 @@ void DocumentDoor::activate(Player * player)
 {
 	if (!this->obtained) {
 		++player->level->document_doors_opened;
+		player->score += 500;
 		this->r = 1.0f;
 		this->g = 1.0f;
 		this->b = 1.0f;

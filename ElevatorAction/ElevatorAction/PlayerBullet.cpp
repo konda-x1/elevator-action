@@ -23,6 +23,7 @@ void PlayerBullet::process(float delta)
 	for (Enemy *e : this->level->enemies) { // Kill enemy & despawn
 		if (CollisionHelper::will_collide(&this->hitbox, dx, dy, e->hitbox)) {
 			e->die();
+			this->level->player->score += 100;
 			this->level->despawn_bullet(this);
 			return;
 		}
