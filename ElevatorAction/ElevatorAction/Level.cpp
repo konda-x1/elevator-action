@@ -61,13 +61,16 @@ void Level::generate_missing_doors()
 {
 	this->insert_document_doors();
 	// Fill up the rest of free space with enemy doors
-	bool b = false; // Break condition
-	for (int y = 1; y <= this->height && !b; y++) {
-		for (int x = 1; x <= this->width && !b; x++) {
+	for (int y = 1; y <= this->height; y++) {
+		for (int x = 1; x <= this->width; x++) {
 			if (this->occupied.count(std::make_pair(x, y)) == 0) { // Free position
-				this->add_xy(new EnemyDoor(x, y));
+				if (y < this->height) {
+					this->add_xy(new EnemyDoor(x, y));
+				}
+				else {
+					this->add_xy(new EnemyDoor(x, y, 2.0f, 5.0f, 0, 1)); // Go easy on the floor where the player spawns
+				}
 			}
-			b = this->remaining_free() <= 0;
 		}
 	}
 }
