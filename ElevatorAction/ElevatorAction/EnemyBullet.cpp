@@ -6,9 +6,9 @@
 
 EnemyBullet::EnemyBullet(Enemy *enemy, float vx, float vy) : Bullet(enemy->level, enemy->gun_fx(), enemy->gun_fy(), vx, vy), enemy(enemy)
 {
-	this->r = 0.6f;
-	this->g = 0.2f;
-	this->b = 0.0f;
+	this->r = 1.0f;
+	this->g = 0.9f;
+	this->b = 0.9f;
 }
 
 
