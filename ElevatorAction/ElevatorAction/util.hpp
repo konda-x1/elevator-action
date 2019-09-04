@@ -23,5 +23,6 @@ float y2fy(int y);
 int fx2x(float fx);
 int fy2y(float fy);
 void drawString(void * font, float x, float y, char *string);
+void drawStringCentered(void *font, float y, char *string);
 void beginText();
 void endText();

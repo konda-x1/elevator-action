@@ -314,7 +314,8 @@ void Level::render_stats()
 
 	beginText();
 	drawString(font, 0.0f, y, textScore);
-	drawString(font, (glutGet(GLUT_WINDOW_WIDTH) - glutBitmapLength(font, (const unsigned char*)textDocuments)) / 2.0f, y, textDocuments);
+	//drawString(font, (glutGet(GLUT_WINDOW_WIDTH) - glutBitmapLength(font, (const unsigned char*)textDocuments)) / 2.0f, y, textDocuments);
+	drawStringCentered(font, y, textDocuments);
 	drawString(font, glutGet(GLUT_WINDOW_WIDTH) - glutBitmapLength(font, (const unsigned char*)textLives), y, textLives);
 	endText();
 }

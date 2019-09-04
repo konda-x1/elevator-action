@@ -158,6 +158,13 @@ void drawString(void * font, float x, float y, char *string)
 	}
 }
 
+void drawStringCentered(void * font, float y, char * string)
+{
+	beginText();
+	drawString(font, (glutGet(GLUT_WINDOW_WIDTH) - glutBitmapLength(font, (const unsigned char *)string)) / 2.0f, y, string);
+	endText();
+}
+
 void beginText() {
 	glMatrixMode(GL_PROJECTION);
 
