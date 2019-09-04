@@ -19,7 +19,6 @@ class Level : public Usable
 	std::vector<PlayerSpawnPoint *> spawns = std::vector<PlayerSpawnPoint *>();
 	std::set<std::pair<int, int>> occupied = std::set<std::pair<int, int>>();
 	std::set<std::pair<int, int>> elevator_occupied = std::set<std::pair<int, int>>();
-	std::set<std::pair<int, int>> platform_occupied = std::set<std::pair<int, int>>();
 	bool built = false;
 	bool player_death = false;
 	float player_death_duration = 2.0f;
@@ -40,6 +39,7 @@ class Level : public Usable
 	void add_exit();
 	void add_hitboxes();
 public:
+	std::set<std::pair<int, int>> platform_occupied = std::set<std::pair<int, int>>();
 	LevelManager *manager = nullptr;
 	Player *player;
 	std::vector<AbstractHitbox *> hitboxes = std::vector<AbstractHitbox *>();

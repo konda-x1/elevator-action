@@ -24,12 +24,7 @@ Enemy::~Enemy()
 
 float Enemy::dfx(float delta)
 {
-	return this->velx * delta;
-}
-
-float Enemy::dfy(float delta)
-{
-	return this->vely * delta;
+	return this->movement_speed * (float)this->orientation * delta;
 }
 
 float Enemy::gun_fx()
@@ -44,16 +39,31 @@ float Enemy::gun_fy()
 
 void Enemy::fire()
 {
-	if (!this->firing) {
-		std::cout << "Enemy Firing" << std::endl;
-		this->level->spawn_bullet(new EnemyBullet(this, (float)this->orientation * 2.0f));
-		this->firing = true;
-	}
+	this->level->spawn_bullet(new EnemyBullet(this, (float)this->orientation * 2.0f));
 }
 
 void Enemy::die()
 {
 	this->level->despawn_enemy(this);
+}
+
+void Enemy::move(float delta)
+{
+	float new_fx = this->fx + this->dfx(delta);
+	int ix = fx2x(new_fx);
+	int iy = fy2y(this->fy);
+	std::pair<int, int> xy = std::make_pair(ix, iy);
+	if (this->level->platform_occupied.count(xy) == 0) { // Can't walk in current direction if there's no platform to walk on
+		this->orientation = (Orientation)(-1 * this->orientation);
+	}
+	else {
+		this->fx = new_fx;
+	}
+}
+
+void Enemy::face_player()
+{
+	this->orientation = (Orientation)((int)(this->level->player->fx > this->fx) * 2 - 1);
 }
 
 void Enemy::check_usable()
@@ -70,13 +80,30 @@ void Enemy::elapse_fire(float delta)
 		if (this->fire_elapsed > this->fire_cooldown) {
 			this->fire_elapsed = 0.0f;
 			this->firing = false;
+			this->fired = false;
 		}
 	}
 }
 
 void Enemy::process(float delta)
 {
-	
+	if (this->level->player->hitbox->top() >= this->gun_fy() && this->level->player->hitbox->bottom() <= this->gun_fy() && !this->firing && randfloat(0.0f, 1.0f) > 0.9995f) {
+		this->firing = true;
+	}
+	if (this->firing) {
+		this->elapse_fire(delta);
+		if (this->fire_elapsed > 0.5f && !this->fired) {
+			this->fire();
+			this->fired = true;
+		}
+	}
+	if (!this->firing || this->firing && this->fire_elapsed >= 1.0f) {
+		//std::cout << "Moving" << std::endl;
+		this->move(delta);
+	}
+	else if (this->firing && this->fire_elapsed < 1.0f) {
+		this->face_player();
+	}
 }
 
 void Enemy::render_gun()
