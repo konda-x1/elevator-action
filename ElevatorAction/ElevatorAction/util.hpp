@@ -18,3 +18,7 @@ bool fle(float x, float y, float epsillon = 0.005f);
 bool fge(float x, float y, float epsillon = 0.005f);
 bool flt(float x, float y, float epsillon = 0.005f);
 bool fgt(float x, float y, float epsillon = 0.005f);
+float x2fx(int x);
+float y2fy(int y);
+int fx2x(float fx);
+int fy2y(float fy);

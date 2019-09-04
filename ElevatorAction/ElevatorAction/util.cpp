@@ -117,3 +117,33 @@ bool fgt(float x, float y, float epsillon)
 {
 	return fcmp(x, y, epsillon) > 0;
 }
+
+float x2fx(int x)
+{
+	return x - 1.0f;
+}
+
+float y2fy(int y)
+{
+	return y - 1.0f;
+}
+
+int fx2x(float fx)
+{
+	float ceil = std::ceilf(fx);
+	int x = (int)ceil;
+	if (feq(ceil, fx)) {
+		++x;
+	}
+	return x;
+}
+
+int fy2y(float fy)
+{
+	float ceil = std::ceilf(fy);
+	int y = (int)ceil;
+	if (feq(ceil, fy)) {
+		++y;
+	}
+	return y;
+}
