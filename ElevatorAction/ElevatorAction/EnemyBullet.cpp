@@ -20,7 +20,12 @@ void EnemyBullet::process(float delta)
 {
 	float dx = this->dx(delta);
 	float dy = this->dy(delta);
-	if (CollisionHelper::collides_with_solid(&this->hitbox, dx, dy, this->level->hitboxes)) {
+	if (CollisionHelper::will_collide(&this->hitbox, dx, dy, this->level->player->hitbox)) { // Kill player & despawn
+		this->level->player->die();
+		this->level->despawn_bullet(this);
+		return;
+	}
+	if (CollisionHelper::collides_with_solid(&this->hitbox, dx, dy, this->level->hitboxes)) { // Collide with level geometry & despawn
 		this->level->despawn_bullet(this);
 	}
 	else {
