@@ -15,6 +15,7 @@
 #include "Enemy.hpp"
 #include "Wall.hpp"
 
+#include <cstdio>
 #include "glut/glut.h"
 
 
@@ -223,6 +224,7 @@ void Level::kill_player()
 
 void Level::exit()
 {
+	this->player->score += 2000;
 	this->manager->go2next();
 }
 
@@ -299,11 +301,30 @@ void Level::process(float delta)
 	}
 }
 
+void Level::render_stats()
+{
+	char textScore[20], textDocuments[20], textLives[20];
+	sprintf_s(textScore, "Score: %07d", this->player->score);
+	sprintf_s(textDocuments, "Documents: %2d/%2d", this->document_doors_opened, this->document_doors);
+	sprintf_s(textLives, "Lives: %d", this->player->lives);
+
+	void * font = GLUT_BITMAP_HELVETICA_12;
+	float y = glutGet(GLUT_WINDOW_HEIGHT) - 12.0f;
+	glColor3f(1.0f, 1.0f, 1.0f);
+
+	beginText();
+	drawString(font, 0.0f, y, textScore);
+	drawString(font, (glutGet(GLUT_WINDOW_WIDTH) - glutBitmapLength(font, (const unsigned char*)textDocuments)) / 2.0f, y, textDocuments);
+	drawString(font, glutGet(GLUT_WINDOW_WIDTH) - glutBitmapLength(font, (const unsigned char*)textLives), y, textLives);
+	endText();
+}
+
 void Level::render(float delta)
 {
 	this->check_usable();
+
 	glLoadIdentity();
-	glTranslatef(-1.0f, -1.0f, 0.0f);
+	glTranslatef(-1.0f, std::fmin(-1.0, -this->player->fy * 2.0f / (float)this->width), 0.0f);
 	glScalef(2.0f / (float)this->width, 2.0f / (float)this->width, 1.0f);
 	for (LevelObject *object : this->objects) {
 		object->render(delta);
@@ -315,6 +336,8 @@ void Level::render(float delta)
 	for (Bullet *b : this->bullets) {
 		b->render(delta);
 	}
+	glLoadIdentity();
+	this->render_stats();
 }
 
 void Level::build()

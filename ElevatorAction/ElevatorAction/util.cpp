@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <stdexcept>
 #include "util.hpp"
+#include "glut/glut.h"
 
 int randint(int min_val, int max_val)
 {
@@ -146,4 +147,37 @@ int fy2y(float fy)
 		++y;
 	}
 	return y;
+}
+
+void drawString(void * font, float x, float y, char *string)
+{
+	glRasterPos2f(x, y);
+
+	for (char* c = string; *c != '\0'; c++) {
+		glutBitmapCharacter(font, *c);  // Updates the position
+	}
+}
+
+void beginText() {
+	glMatrixMode(GL_PROJECTION);
+
+	// Save the current projection matrix
+	glPushMatrix();
+
+	// Make the current matrix the identity matrix
+	glLoadIdentity();
+
+	// Set the projection (to 2D orthographic)
+	gluOrtho2D(0, glutGet(GLUT_WINDOW_WIDTH), 0, glutGet(GLUT_WINDOW_WIDTH));
+
+	glMatrixMode(GL_MODELVIEW);
+}
+
+void endText() {
+	glMatrixMode(GL_PROJECTION);
+
+	// Restore the original projection matrix
+	glPopMatrix();
+
+	glMatrixMode(GL_MODELVIEW);
 }

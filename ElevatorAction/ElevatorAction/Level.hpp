@@ -69,6 +69,7 @@ public:
 	void despawn_enemy(Enemy *enemy);
 	void transition_to(Level *level);
 	void process(float delta);
+	void render_stats();
 	void render(float delta);
 	void build();
 };
