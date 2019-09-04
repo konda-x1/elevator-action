@@ -34,6 +34,9 @@ float Player::dfy(float delta)
 
 float Player::current_height()
 {
+	if (this->input == nullptr) {
+		this->input = &this->level->manager->game->input;
+	}
 	if (this->input->down && !this->inside_elevator() && !this->dying)
 		return this->height / 2.0f;
 	return this->height;

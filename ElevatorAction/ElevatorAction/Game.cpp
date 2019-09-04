@@ -5,7 +5,7 @@
 
 
 
-Game::Game() : input(UserInput()), levels(LevelManager(this)), gamestate(GameStates::in_game(this))
+Game::Game() : input(UserInput()), levels(LevelManager(this)), gamestate(GameStates::main_menu(this))
 {
 }
 

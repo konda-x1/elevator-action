@@ -34,3 +34,27 @@ GameStateExit *GameStates::exit(Game *game)
 {
 	return new GameStateExit(game);
 }
+
+GameState * GameStates::from_enum(Game * game, GameState::GS state)
+{
+	switch (state) {
+	case GameState::MAIN_MENU:
+		return main_menu(game);
+		break;
+	case GameState::IN_GAME:
+		return in_game(game);
+		break;
+	case GameState::SCOREBOARD:
+		return scoreboard(game);
+		break;
+	case GameState::GAME_OVER:
+		return game_over(game);
+		break;
+	case GameState::EXIT:
+		return exit(game);
+		break;
+	default:
+		throw std::exception("Invalid state");
+		break;
+	}
+}

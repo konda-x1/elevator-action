@@ -4,6 +4,7 @@
 #include "GameStateInGame.hpp"
 #include "GameStateGameOver.hpp"
 #include "GameStateExit.hpp"
+class GameState;
 class Game;
 class GameStates
 {
@@ -16,5 +17,6 @@ public:
 	static GameStateInGame *in_game(Game *game);
 	static GameStateGameOver *game_over(Game *game);
 	static GameStateExit *exit(Game *game);
+	static GameState *from_enum(Game *game, GameState::GS state);
 };
 

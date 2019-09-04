@@ -7,7 +7,10 @@ public:
 	bool left = false;
 	bool right = false;
 	bool use = false;
+
 	UserInput();
 	~UserInput();
+
+	void clear();
 };
 
