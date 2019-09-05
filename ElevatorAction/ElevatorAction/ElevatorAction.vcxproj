@@ -151,6 +151,7 @@
     <ClCompile Include="Hitbox.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="LevelManager.cpp" />
+    <ClCompile Include="Levels.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="LevelObject.cpp" />
     <ClCompile Include="Platform.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Level.hpp" />
     <ClInclude Include="LevelManager.hpp" />
     <ClInclude Include="LevelObject.hpp" />
+    <ClInclude Include="Levels.hpp" />
     <ClInclude Include="Platform.hpp" />
     <ClInclude Include="Player.hpp" />
     <ClInclude Include="PlayerBullet.hpp" />
