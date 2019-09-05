@@ -262,6 +262,8 @@ void Level::transition_to(Level * level)
 	this->player->jumping = false;
 	this->player->firing = false;
 	this->player->dying = false;
+	this->player->jump_elapsed = 0.0f;
+	this->player->fire_elapsed = 0.0f;
 	this->player->elevator = nullptr;
 	this->player->door = nullptr;
 	level->set_player(this->player);
