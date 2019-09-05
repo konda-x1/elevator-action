@@ -1,10 +1,21 @@
 #include <iostream>
+#include <cstdio>
 #include <cstdlib>
+#include <ctime>
 #include <cmath>
+#include <stdexcept>
 #include "glut\glut.h"
 #include "main.hpp"
+#include "Game.hpp"
+#include "Level.hpp"
+#include "Elevator.hpp"
+#include "DocumentDoor.hpp"
+#include "ExtraLife.hpp"
+#include "Levels.hpp"
 
 using namespace std;
+
+Game game = Game(generate_levels);
 
 const double Xmin = 0.0, Xmax = 3.0;
 const double Ymin = 0.0, Ymax = 3.0;
@@ -26,13 +37,22 @@ float getDeltaTime(void) {
 
 void myKeyboardFunc(unsigned char key, int x, int y)
 {
+	game.keyboard_press(key, x, y);
+}
 
-
+void myKeyboardUpFunc(unsigned char key, int x, int y)
+{
+	game.keyboard_release(key, x, y);
 }
 
 void mySpecialKeyFunc(int key, int x, int y)
 {
+	game.specialkey_press(key, x, y);
+}
 
+void mySpecialUpFunc(int key, int x, int y)
+{
+	game.specialkey_release(key, x, y);
 }
 
 
@@ -40,6 +60,9 @@ void drawScene(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	float delta = getDeltaTime();
+
+	game.process(delta);
+	game.render(delta);
 
 	glFlush();
 	glutSwapBuffers();
@@ -83,9 +106,19 @@ void resizeWindow(int w, int h)
 
 }
 
+void initialize() {
+	srand(time(0));
+}
+
+void generate_levels(Game *game) {
+	game->add_level(Levels::level1());
+	game->add_level(Levels::level2());
+	game->add_level(Levels::level3());
+}
 
 int main(int argc, char** argv)
 {
+	initialize();
 	glutInit(&argc, argv);
 
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
@@ -98,11 +131,12 @@ int main(int argc, char** argv)
 	initRendering();
 
 	glutKeyboardFunc(myKeyboardFunc);
+	glutKeyboardUpFunc(myKeyboardUpFunc);
 	glutSpecialFunc(mySpecialKeyFunc);
+	glutSpecialUpFunc(mySpecialUpFunc);
 
 
 	glutReshapeFunc(resizeWindow);
-
 
 	glutDisplayFunc(drawScene);
 
@@ -110,4 +144,3 @@ int main(int argc, char** argv)
 
 	return(0);
 }
-
