@@ -258,6 +258,12 @@ void Level::despawn_enemy(Enemy * enemy)
 
 void Level::transition_to(Level * level)
 {
+	this->player->on_ground = false;
+	this->player->jumping = false;
+	this->player->firing = false;
+	this->player->dying = false;
+	this->player->elevator = nullptr;
+	this->player->door = nullptr;
 	level->set_player(this->player);
 }
 

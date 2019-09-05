@@ -3,6 +3,7 @@
 #include <functional>
 #include "Game.hpp"
 #include "GameStates.hpp"
+#include "LevelManager.hpp"
 #include "glut/glut.h"
 
 
@@ -106,7 +107,6 @@ void Game::set_gamestate(GameState * state)
 
 void Game::add_level(Level * level)
 {
-	level->set_player(this->player);
 	this->levels->add(level);
 }
 

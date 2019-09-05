@@ -20,6 +20,9 @@ LevelManager::~LevelManager()
 
 void LevelManager::add(Level *level)
 {
+	if (this->levels.size() == 0) {
+		level->set_player(this->game->player);
+	}
 	this->levels.push_back(level);
 	level->manager = this;
 }
