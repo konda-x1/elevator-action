@@ -13,7 +13,7 @@ public:
 	LevelManager levels;
 	UserInput input;
 	GameState *gamestate;
-	Player player = Player();
+	Player *player = new Player();
 	std::vector<int> scores = std::vector<int>();
 
 	Game();

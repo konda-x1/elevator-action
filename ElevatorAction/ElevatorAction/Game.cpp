@@ -1,4 +1,6 @@
 #include <iostream>
+#include <algorithm>
+#include <functional>
 #include "Game.hpp"
 #include "GameStates.hpp"
 #include "glut/glut.h"
@@ -105,6 +107,14 @@ void Game::game_over()
 {
 	if (this->gamestate->state != GameState::IN_GAME)
 		throw std::exception("Not in game");
+
+	// Save score
+	this->scores.push_back(this->player->score);
+	std::sort(this->scores.begin(), this->scores.end(), std::greater<int>());
+	if (this->scores.size() > 10) {
+		this->scores.erase(this->scores.begin() + 9, this->scores.end());
+	}
+
 	this->set_gamestate(GameStates::game_over(this));
 }
 
