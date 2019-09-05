@@ -70,7 +70,6 @@ bool Player::crouching()
 void Player::fire()
 {
 	if (!this->firing) {
-		std::cout << "Firing" << std::endl;
 		this->level->spawn_bullet(new PlayerBullet(this->level, (float)this->orientation * 2.0f));
 		this->firing = true;
 	}
