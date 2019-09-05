@@ -12,10 +12,10 @@ GameStateInGame::~GameStateInGame()
 
 void GameStateInGame::process(float delta)
 {
-	this->game->levels.process(delta);
+	this->game->levels->process(delta);
 }
 
 void GameStateInGame::render(float delta)
 {
-	this->game->levels.render(delta);
+	this->game->levels->render(delta);
 }

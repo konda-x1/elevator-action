@@ -17,6 +17,20 @@ GameStateGameOver::~GameStateGameOver()
 void GameStateGameOver::process(float delta)
 {
 	if (this->game->input.use) {
+		// Save score
+		this->game->add_score(this->game->player->score);
+
+		// Reset player
+		Player *p = this->game->player;
+		this->game->player = new Player();
+		delete p;
+
+		// Generate levels again
+		LevelManager *lm = this->game->levels;
+		this->game->levels = new LevelManager(this->game);
+		delete lm;
+		this->game->levelgen_function(this->game);
+
 		this->game->input.clear();
 		this->game->set_gamestate(GameStates::main_menu(this->game));
 	}

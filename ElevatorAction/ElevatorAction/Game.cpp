@@ -7,8 +7,9 @@
 
 
 
-Game::Game() : input(UserInput()), levels(LevelManager(this)), gamestate(GameStates::main_menu(this))
+Game::Game(void(*levelgen_callback)(Game *game)) : input(UserInput()), gamestate(GameStates::main_menu(this)), levelgen_function(levelgen_callback)
 {
+	this->levelgen_function(this);
 }
 
 
@@ -103,19 +104,27 @@ void Game::set_gamestate(GameState * state)
 	delete oldstate;
 }
 
+void Game::add_level(Level * level)
+{
+	level->set_player(this->player);
+	this->levels->add(level);
+}
+
 void Game::game_over()
 {
 	if (this->gamestate->state != GameState::IN_GAME)
 		throw std::exception("Not in game");
 
-	// Save score
-	this->scores.push_back(this->player->score);
+	this->set_gamestate(GameStates::game_over(this));
+}
+
+void Game::add_score(int score)
+{
+	this->scores.push_back(score);
 	std::sort(this->scores.begin(), this->scores.end(), std::greater<int>());
 	if (this->scores.size() > 10) {
 		this->scores.erase(this->scores.begin() + 9, this->scores.end());
 	}
-
-	this->set_gamestate(GameStates::game_over(this));
 }
 
 void Game::process(float delta)
