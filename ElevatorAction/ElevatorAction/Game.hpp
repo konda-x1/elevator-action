@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 #include "GameState.hpp"
 #include "UserInput.hpp"
 #include "Player.hpp"
@@ -13,6 +14,7 @@ public:
 	UserInput input;
 	GameState *gamestate;
 	Player player = Player();
+	std::vector<int> scores = std::vector<int>();
 
 	Game();
 	~Game();
