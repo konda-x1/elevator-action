@@ -126,7 +126,7 @@ int main(int argc, char** argv)
 	glutInitWindowPosition(10, 60);
 	glutInitWindowSize(360, 360);
 
-	glutCreateWindow("Hello World");
+	glutCreateWindow("Elevator Action");
 
 	initRendering();
 
