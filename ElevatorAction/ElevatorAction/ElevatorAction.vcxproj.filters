@@ -262,5 +262,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="glut\glut32.dll" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
