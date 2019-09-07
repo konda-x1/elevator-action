@@ -21,6 +21,7 @@ void ExtraLife::process(float delta, Player *player)
 		return;
 	if (player->hitbox->collides(this->hitbox)) {
 		++player->lives;
+		player->score += 200;
 		this->taken = true;
 	}
 }
